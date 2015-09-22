@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
@@ -54,7 +55,11 @@ public class ItemDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.item_detail)).setText(mItem.content);
+            ((ImageView) rootView.findViewById(R.id.item_image)).setImageResource(R.drawable.ic_launcher);
+            ((TextView) rootView.findViewById(R.id.item_detail_name)).setText(mItem.name);
+            ((TextView) rootView.findViewById(R.id.item_detail_description)).setText(mItem.description);
+            ((TextView) rootView.findViewById(R.id.item_detail_dateBought)).setText(mItem.dateBought.toString());
+            ((TextView) rootView.findViewById(R.id.item_detail_dateExpired)).setText(mItem.dateExpired.toString());
         }
 
         return rootView;
