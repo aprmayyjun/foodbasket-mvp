@@ -13,19 +13,19 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ItemListActivity"
+            android:name=".toDelete.ItemListActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".ItemDetailActivity"
+            android:name=".toDelete.ItemDetailActivity"
             android:label="@string/title_item_detail"
-            android:parentActivityName=".ItemListActivity" >
+            android:parentActivityName=".toDelete.ItemListActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ItemListActivity" />
+                android:value=".toDelete.ItemListActivity" />
         </activity>
         <activity
-            android:name=".ScannerActivity"
+            android:name=".user.ScannerActivity"
             android:label="@string/title_activity_scanner" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,13 +34,37 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".admin.LoginRegisterActivity"
             android:label="@string/title_activity_login"
             android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".toDelete.RegisterActivity"
             android:label="@string/title_activity_register" >
+        </activity>
+        <activity
+            android:name=".toDelete.AddItemActivity"
+            android:label="@string/title_activity_add_item" >
+        </activity>
+        <activity
+            android:name=".toDelete.EditItemActivity"
+            android:label="@string/title_activity_edit_item" >
+        </activity>
+        <activity
+            android:name=".user.CreateEntryActivity"
+            android:label="@string/title_activity_create_entry" >
+        </activity>
+        <activity
+            android:name=".user.DetailedEntryActivity"
+            android:label="@string/title_activity_detailed_entry" >
+        </activity>
+        <activity
+            android:name=".user.EditEntryActivity"
+            android:label="@string/title_activity_edit_entry" >
+        </activity>
+        <activity
+            android:name=".user.InventoryListActivity"
+            android:label="@string/title_activity_inventory_list" >
         </activity>
     </application>
 

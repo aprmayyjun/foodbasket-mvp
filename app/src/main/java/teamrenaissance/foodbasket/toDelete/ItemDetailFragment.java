@@ -1,4 +1,4 @@
-package teamrenaissance.foodbasket;
+package teamrenaissance.foodbasket.toDelete;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import teamrenaissance.foodbasket.R;
 import teamrenaissance.foodbasket.dummy.DummyContent;
 
 /**

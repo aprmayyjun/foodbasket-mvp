@@ -1,9 +1,11 @@
-package teamrenaissance.foodbasket;
+package teamrenaissance.foodbasket.toDelete;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import teamrenaissance.foodbasket.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
