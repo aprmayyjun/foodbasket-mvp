@@ -1,10 +1,8 @@
 package teamrenaissance.foodbasket.data;
 
 import android.annotation.SuppressLint;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -35,7 +33,7 @@ public class Entry {
         this.capacityUnits = units;
         this.imageUrl = img;
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             this.expiryDate = sdf.parse(dateStr);
         } catch (ParseException e) {

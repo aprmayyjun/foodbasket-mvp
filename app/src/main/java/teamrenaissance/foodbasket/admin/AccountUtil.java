@@ -152,7 +152,7 @@ public class AccountUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("householdID", householdID));
+                params.add(new BasicNameValuePair("household_id", householdID));
 
                 Log.d("gga", jResp.toString());
                 new RetrieveEntries(params, this.context, householdID, option).execute();

@@ -79,9 +79,10 @@ public class SearchProduct {
 
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("name", name));
-            params.add(new BasicNameValuePair("price", price));
-            params.add(new BasicNameValuePair("description", description));
+            params.add(new BasicNameValuePair("product_name", name));
+            // TODO: UPDATE based on backend logic
+//            params.add(new BasicNameValuePair("price", price));
+//            params.add(new BasicNameValuePair("description", description));
 
             // getting JSON Object
             // Note that create product url accepts POST method

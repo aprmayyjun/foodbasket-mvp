@@ -3,7 +3,6 @@ package teamrenaissance.foodbasket.data;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 
@@ -25,8 +24,9 @@ public class Entries {
     public Entries (JSONObject jResp) {
 
         Entry entry;
-        String uname, pname, desc, img, dateStr, rating;
-        int yob, id;
+        String householdID, pname, cat, units, img, dateStr;
+        float cap;
+        int id;
         JSONObject jObject;
 
         try {
@@ -38,27 +38,22 @@ public class Entries {
 
                 jObject = jArray.getJSONObject(i);
 
-                uname = jObject.getString("username");
-                yob = jObject.getInt("yob");
-                pname = jObject.getString("pname");
-                desc = jObject.getString("description");
-                rating = jObject.getString("rating");
-                img = jObject.getString("imageUrl");
-                dateStr = jObject.getString("date");
+                householdID = jObject.getString("household_id");
+                pname = jObject.getString("product_name");
+                cat = jObject.getString("category");
+                cap = (float) jObject.getDouble("capacity");
+                units = jObject.getString("capacity_units");
+                img = jObject.getString("picture");
+                dateStr = jObject.getString("expiry_date");
                 id = jObject.getInt("id");
 
                 // initialize an Entry object for each entry read from DB
-                entry = new Entry (uname, yob, pname, desc, rating, img, dateStr, id);
+                entry = new Entry (householdID, pname, cat, cap, units, img, dateStr, id);
                 // add each Entry to the array of entries
                 entriesArray.add(entry);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
-
 }

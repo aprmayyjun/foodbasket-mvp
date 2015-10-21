@@ -30,17 +30,21 @@ import teamrenaissance.foodbasket.data.ManageEntryUtil.EditEntry;;
  */
 
 public class EditEntryActivity extends Activity{
-    private String editName = "";
-    private String editExp = "";
-    private String rating = "";
-    private int ratingBuffer;
+
     private String householdID = "";
+    private String editName = "";
+    private String editCategory = "";
+    private String editCapacity = "";
+    private String editCapacityUnits = "";
     private String image = "";
-    private String id = "";
+    private String editExpiryDate = "";
+    private String inventoryID = "";
 
     EditText editNameET;
-    EditText editExpET;
-    RatingBar editRateRB;
+    EditText editCategoryET;
+    EditText editCapacityET;
+    EditText editCapacityUnitsET;
+    EditText editExpiryDateET;
 
     // form verification!
     // size of the following String fields not to exceed:
@@ -57,26 +61,30 @@ public class EditEntryActivity extends Activity{
         setupUI(findViewById(R.id.editScreen));
 
         editNameET = (EditText)findViewById(R.id.editName);
-        editExpET = (EditText)findViewById(R.id.editExp);
-        editRateRB = (RatingBar)findViewById(R.id.editRate);
+        editCategoryET = (EditText)findViewById(R.id.editCategory);
+        editCapacityET = (EditText)findViewById(R.id.editCapacity);
+        editCapacityUnitsET = (EditText)findViewById(R.id.editCapacityUnits);
+        editExpiryDateET = (EditText)findViewById(R.id.editExpiryDate);
 
         if (getIntent().getExtras()==null)
             Log.d("null!", "null!");
-        householdID = getIntent().getExtras().getString("householdID");
 
+        householdID = getIntent().getExtras().getString("householdID");
         editName = getIntent().getExtras().getString("pname");
-        editExp = getIntent().getExtras().getString("description");
-        rating = getIntent().getExtras().getString("rating");
+        editCategory = getIntent().getExtras().getString("category");
+        editCapacity = getIntent().getExtras().getString("capacity");
+        editCapacityUnits = getIntent().getExtras().getString("capacityUnits");
         image = getIntent().getExtras().getString("imageUrl");
-        id = getIntent().getExtras().getString("id");
+        editExpiryDate = getIntent().getExtras().getString("expiryDate");
+        inventoryID = getIntent().getExtras().getString("inventoryID");
 
         button();
 
         editNameET.setText(editName);
-        editExpET.setText(editExp);
-
-        float ratingScore = Float.parseFloat(rating);
-        editRateRB.setRating(ratingScore/2);
+        editCategoryET.setText(editCategory);
+        editCapacityET.setText(editCapacity);
+        editCapacityUnitsET.setText(editCapacityUnits);
+        editExpiryDateET.setText(editExpiryDate);
 
     }
 
@@ -89,16 +97,16 @@ public class EditEntryActivity extends Activity{
             public void onClick(View v) {
 
                 String editedName = editNameET.getText().toString();
-                String editedExp = editExpET.getText().toString();
+                String editedCategory = editCategoryET.getText().toString();
+                String editedCapacity = editCapacityET.getText().toString();
+                String editedCapacityUnits = editCapacityUnitsET.getText().toString();
+                String editedExpiryDate = editExpiryDateET.getText().toString();
 
-                ratingBuffer =((int) (2*(editRateRB.getRating())));
-                String editedRating = String.valueOf(ratingBuffer);
-
-                if (!(StringUtilities.isAlphaNumericPunctuation(editedName))&&!(StringUtilities.isAlphaNumericPunctuation(editedExp))){
+                if (!(StringUtilities.isAlphaNumericPunctuation(editedName))&&!(StringUtilities.isAlphaNumericPunctuation(editedCategory))){
                     Toast.makeText(EditEntryActivity.this, "Error: Invalid Entry in field.", Toast.LENGTH_SHORT).show();
-                } else if (editedName.equalsIgnoreCase("") || editedExp.equalsIgnoreCase("") ) {
+                } else if (editedName.equalsIgnoreCase("") || editedCategory.equalsIgnoreCase("") ) {
                     Toast.makeText(EditEntryActivity.this, "Error: All fields required.", Toast.LENGTH_SHORT).show();
-                } else if (editedName.equals(editName)&&editedExp.equals(editExp)&&editedRating.equals(rating)){
+                } else if (editedName.equals(editName)&&editedCategory.equals(editCategory)&&editedCapacity.equals(editCapacity)&&editedCapacityUnits.equals(editCapacityUnits)&&editedExpiryDate.equals(editExpiryDate)){
                     Toast.makeText(EditEntryActivity.this, "Error: No changes made.", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -108,17 +116,20 @@ public class EditEntryActivity extends Activity{
 
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
                     params.add(new BasicNameValuePair("action", "edit"));
-                    params.add(new BasicNameValuePair("id", id));
-                    params.add(new BasicNameValuePair("pname", editedName));
-                    params.add(new BasicNameValuePair("description", editedExp));
-                    params.add(new BasicNameValuePair("rating", editedRating));
-                    params.add(new BasicNameValuePair("imageUrl", image));
+                    params.add(new BasicNameValuePair("inventory_id", inventoryID));
+                    params.add(new BasicNameValuePair("product_name", editedName));
+                    params.add(new BasicNameValuePair("category", editedCategory));
+                    params.add(new BasicNameValuePair("capacity", editedCapacity));
+                    params.add(new BasicNameValuePair("capacity_units", editedCapacityUnits));
+                    params.add(new BasicNameValuePair("picture", image));
+                    params.add(new BasicNameValuePair("expiry_date", editedExpiryDate));
 
 
-                    Log.d("id", id+"");
+                    Log.d("id", inventoryID + "");
                     Log.d("pname", editedName);
-                    Log.d("description", editedExp);
-                    Log.d("rating", editedRating);
+                    Log.d("editedCategory", editedCategory);
+                    Log.d("editedCapacity", editedCapacity);
+                    Log.d("editedCapacityUnits", editedCapacityUnits);
                     Log.d("imageUrl", image);
 
 

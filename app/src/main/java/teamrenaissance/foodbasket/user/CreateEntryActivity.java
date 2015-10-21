@@ -1,34 +1,36 @@
 package teamrenaissance.foodbasket.user;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnTouchListener;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.Toast;
-//import teamrenaissance.foodbasket.data.ImageUtil;
-import teamrenaissance.foodbasket.data.ManageEntryUtil.CreateEntryWithoutPicture;
-import teamrenaissance.foodbasket.data.ManageEntryUtil.CreateEntryWithPicture;
-import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
-import teamrenaissance.foodbasket.admin.StringUtilities;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import teamrenaissance.foodbasket.R;
+import teamrenaissance.foodbasket.admin.StringUtilities;
+import teamrenaissance.foodbasket.data.ImageUtil;
+import teamrenaissance.foodbasket.data.ManageEntryUtil.CreateEntryWithPicture;
+import teamrenaissance.foodbasket.data.ManageEntryUtil.CreateEntryWithoutPicture;
 
 
 /**
@@ -38,17 +40,21 @@ import teamrenaissance.foodbasket.R;
  *
  */
 public class CreateEntryActivity extends Activity{
-    private String newName;
-    private String newExp;
-    private String rating;
-    private int ratingBuffer;
+
     private String householdID;
-    private Date date;
-    private String dateString;
+    private String newName;
+    private String newCategory;
+    private String tmpCapacityStr;
+    private float newCapacity;
+    private String newCapacityUnits;
+    private Date newExpiryDate;
+    private String tmpDateStr;
 
     private EditText newnameET;
-    private EditText newexpET;
-    private RatingBar rateRB;
+    private EditText newCategoryET;
+    private EditText newCapacityET;
+    private EditText newCapacityUnitsET;
+    private EditText newExpiryDateET;
     private ImageView img;
     private Button submitButton;
 
@@ -68,8 +74,11 @@ public class CreateEntryActivity extends Activity{
         householdID = getIntent().getExtras().getString("householdID");
 
         newnameET = (EditText)findViewById(R.id.newName);
-        newexpET = (EditText)findViewById(R.id.newExp);
-        rateRB = (RatingBar)findViewById(R.id.newRate);
+        newCategoryET = (EditText)findViewById(R.id.newCategory);
+        newCapacityET = (EditText)findViewById(R.id.newCapacity);
+        newCapacityUnitsET = (EditText)findViewById(R.id.newCapacityUnits);
+        newExpiryDateET = (EditText)findViewById(R.id.newExpiryDate);
+
         submitButton = (Button) findViewById(R.id.btn_newSubmit);
         img = (ImageView) findViewById(R.id.productImageView);
 
@@ -84,28 +93,37 @@ public class CreateEntryActivity extends Activity{
             @Override
             public void onClick(View v) {
                 newName = newnameET.getText().toString();
-                newExp = newexpET.getText().toString();
-                ratingBuffer = ((int) (2*(rateRB.getRating())));
-                rating = String.valueOf(ratingBuffer);
-                date = new Date();
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-                dateString = sdf.format(date);
+                newCategory = newCategoryET.getText().toString();
+
+                tmpCapacityStr = newCapacityET.getText().toString();
+                newCapacity = new Float(tmpCapacityStr);
+
+                newCapacityUnits = newCapacityUnitsET.getText().toString();
+                tmpDateStr = newExpiryDateET.getText().toString();
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                try {
+                    newExpiryDate = sdf.parse(tmpDateStr);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
                 // Check for validity of input
-                if (!(StringUtilities.isAlphaNumericPunctuation(newName))&&!(StringUtilities.isAlphaNumericPunctuation(newExp))){
+                if (!(StringUtilities.isAlphaNumericPunctuation(newName))&&!(StringUtilities.isAlphaNumericPunctuation(newCategory))){
                     Toast.makeText(CreateEntryActivity.this, "Error: Invalid Entry into field", Toast.LENGTH_SHORT).show();
-                } else if (newName.equalsIgnoreCase("") || newExp.equalsIgnoreCase("") ) {
+                } else if (newName.equalsIgnoreCase("") || newCategory.equalsIgnoreCase("")) {
                     Toast.makeText(CreateEntryActivity.this, "Error: All fields required", Toast.LENGTH_SHORT).show();
                 } else {
 
                     // add the data collected to params variable to be sent to server
                     // 6: householdID, pname, description, rating, imageUrl, date;
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("householdID", householdID));
-                    params.add(new BasicNameValuePair("pname", newName));
-                    params.add(new BasicNameValuePair("description", newExp));
-                    params.add(new BasicNameValuePair("rating", rating));
-                    params.add(new BasicNameValuePair("date", dateString));
+                    params.add(new BasicNameValuePair("household_id", householdID));
+                    params.add(new BasicNameValuePair("product_name", newName));
+                    params.add(new BasicNameValuePair("category", newCategory));
+                    params.add(new BasicNameValuePair("capacity", tmpCapacityStr));
+                    params.add(new BasicNameValuePair("capacity_units", newCapacityUnits));
+                    params.add(new BasicNameValuePair("expiry_date", tmpDateStr));
 
                     if (bitmap == null)
                         new CreateEntryWithoutPicture(params, CreateEntryActivity.this, householdID).execute();

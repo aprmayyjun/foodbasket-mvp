@@ -76,8 +76,8 @@ public class InventoryListActivity extends Activity {
 
             public int compare(Entry e1, Entry e2) {
 
-                Date date1 = e1.getDate();
-                Date date2 = e2.getDate();
+                Date date1 = e1.getExpiryDate();
+                Date date2 = e2.getExpiryDate();
 
                 //latest to earliest
                 return (date2.compareTo(date1));
@@ -92,14 +92,16 @@ public class InventoryListActivity extends Activity {
             public void onItemClick(AdapterView<?> paret, View viewClicked, int position, long id) {
                 //TextView textview=(TextView) viewClicked;
                 Entry clickedEntry = InventoryListActivity.this.entries.entriesArray.get(position);
-                Intent toHDetailed = new Intent(InventoryListActivity.this, DetailedEntryActivity.class);
-                toHDetailed.putExtra("householdID", clickedEntry.getUsername());
-                toHDetailed.putExtra("pname", clickedEntry.getPName());
-                toHDetailed.putExtra("description", clickedEntry.getDescription());
-                toHDetailed.putExtra("rating", clickedEntry.getRating());
-                toHDetailed.putExtra("imageUrl", clickedEntry.getImageUrl());
-                toHDetailed.putExtra("id", clickedEntry.getId());
-                startActivity(toHDetailed);
+                Intent toDetailed = new Intent(InventoryListActivity.this, DetailedEntryActivity.class);
+                toDetailed.putExtra("householdID", clickedEntry.getHouseholdID());
+                toDetailed.putExtra("pname", clickedEntry.getPName());
+                toDetailed.putExtra("category", clickedEntry.getCategory());
+                toDetailed.putExtra("capacity", clickedEntry.getCapacityFloat());
+                toDetailed.putExtra("capacityUnits", clickedEntry.getCapacityUnits());
+                toDetailed.putExtra("imageUrl", clickedEntry.getImageUrl());
+                toDetailed.putExtra("expiryDate", clickedEntry.getExpiryDate());
+                toDetailed.putExtra("id", clickedEntry.getId());
+                startActivity(toDetailed);
 
             }
         });

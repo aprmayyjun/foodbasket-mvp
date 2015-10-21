@@ -54,7 +54,7 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
 
         // Set up the login form.
 
-        mUsernameView = (EditText) findViewById(R.id.householdID);
+        mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
         mEmailView = (EditText) findViewById(R.id.email);
         mErrorView = (TextView) findViewById(R.id.error);
@@ -139,7 +139,7 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
 
             // add the data collected to params variable to be sent to server
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("householdID", householdID));
+            params.add(new BasicNameValuePair("household_id", householdID));
             params.add(new BasicNameValuePair("password", password));
 
             // send params variable to control class: VerifyLogin (in AccountUtil)
@@ -207,7 +207,7 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
 
             // add the data collected to params variable to be sent to server
             List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("householdID", householdID));
+            params.add(new BasicNameValuePair("household_id", householdID));
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("email", email));
 

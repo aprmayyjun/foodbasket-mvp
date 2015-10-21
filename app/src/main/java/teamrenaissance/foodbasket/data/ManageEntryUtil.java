@@ -86,7 +86,7 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("householdID", householdID));
+                params.add(new BasicNameValuePair("household_id", householdID));
 
                 new RetrieveEntries(params, this.context, householdID, option).execute();
 
@@ -147,7 +147,7 @@ public class ManageEntryUtil {
             byte [] byte_arr = stream.toByteArray();
             String image_str = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
-            params.add(new BasicNameValuePair("image", image_str));
+            params.add(new BasicNameValuePair("picture", image_str));
 
             // Send entry details to PHP server and receive response
             PHPConnectorInterface phpC = new PHPConnector ();
@@ -174,7 +174,7 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("householdID", householdID));
+                params.add(new BasicNameValuePair("household_id", householdID));
 
                 new RetrieveEntries(params, this.context, householdID, option).execute();
 
@@ -252,7 +252,7 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("householdID", householdID));
+                params.add(new BasicNameValuePair("household_id", householdID));
 
                 new RetrieveEntries(params, this.context, householdID, option).execute();
 
@@ -330,7 +330,7 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("householdID", householdID));
+                params.add(new BasicNameValuePair("household_id", householdID));
 
                 new RetrieveEntries(params, this.context, householdID, option).execute();
 

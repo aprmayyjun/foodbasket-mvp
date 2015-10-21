@@ -22,9 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import teamrenaissance.foodbasket.R;
+import teamrenaissance.foodbasket.data.ImageUtil;
 import teamrenaissance.foodbasket.data.ManageEntryUtil.DeleteEntry;
-//import teamrenaissance.foodbasket.data.ImageUtil;
-//import teamrenaissance.foodbasket.data.ImageUtil.DownloadImageTask;
 
 /**
  * For the Home User.
@@ -36,21 +35,23 @@ import teamrenaissance.foodbasket.data.ManageEntryUtil.DeleteEntry;
 
 public class DetailedEntryActivity extends Activity {
 
-    private String pname = "";
-    private String description = "";
-    private String rating = "";
     private String householdID = "";
+    private String pname = "";
+    private String category = "";
+    private String capacity = "";
+    private String capacityUnits = "";
     private String image = "";
-    private String id = "";
-    private String shareText = "";
-    //private URI shareUri = null;
+    private String expiryDate = "";
+    private String inventoryID = "";
 
     private TextView pnameView;
-    private TextView descView;
-    private RatingBar editRateRB;
-    private ImageView img;
+    private TextView categoryView;
+    private TextView capacityView;
+    private TextView capacityUnitsView;
+    private TextView expDateView;
+    private ImageView imgView;
     private ProgressBar spinner;
-    private DownloadImageTask ref;
+    private ImageUtil.DownloadImageTask ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,28 +60,30 @@ public class DetailedEntryActivity extends Activity {
 
         householdID = getIntent().getExtras().getString("householdID");
         pname = getIntent().getExtras().getString("pname");
-        description = getIntent().getExtras().getString("description");
-        rating = getIntent().getExtras().getString("rating");
+        category = getIntent().getExtras().getString("category");
+        capacity = getIntent().getExtras().getString("capacity");
+        capacityUnits = getIntent().getExtras().getString("capacityUnits");
         image = getIntent().getExtras().getString("imageUrl");
-        id = getIntent().getExtras().getString("id");
+        expiryDate = getIntent().getExtras().getString("expiryDate");
+        inventoryID = getIntent().getExtras().getString("id");
 
         pnameView = (TextView) findViewById(R.id.viewName);
         pnameView.setText(pname);
-        descView = (TextView) findViewById(R.id.viewExp);
-        descView.setText(description);
-        editRateRB = (RatingBar) findViewById(R.id.viewRate);
-        float ratingScore = Float.parseFloat(rating);
-        editRateRB.setRating(ratingScore/2);
-        img = (ImageView) findViewById(R.id.productImage);
+        categoryView = (TextView) findViewById(R.id.viewCategory);
+        categoryView.setText(category);
+        capacityView = (TextView) findViewById(R.id.viewCapacity);
+        capacityView.setText(capacity);
+        capacityUnitsView = (TextView) findViewById(R.id.viewCapacityUnits);
+        capacityUnitsView.setText(capacityUnits);
+        expDateView = (TextView) findViewById(R.id.viewExpiry);
+        expDateView.setText(expiryDate);
+        imgView = (ImageView) findViewById(R.id.productImage);
         spinner = (ProgressBar) findViewById(R.id.progressBar1);
-        ref = new DownloadImageTask(img, image, spinner);
+        ref = new ImageUtil.DownloadImageTask(imgView, image, spinner);
         ref.execute();
-
-        shareText = "Review for " + pname + ": " + description;
 
         editbutton();
         deleteButton();
-        shareButton(shareText, image);
     }
 
 
@@ -89,16 +92,18 @@ public class DetailedEntryActivity extends Activity {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toHEditEntry = new Intent(DetailedEntryActivity.this, EditEntryActivity.class);
+                Intent toEditEntry = new Intent(DetailedEntryActivity.this, EditEntryActivity.class);
 
-                toHEditEntry.putExtra("householdID", householdID);
-                toHEditEntry.putExtra("pname", pname);
-                toHEditEntry.putExtra("description", description);
-                toHEditEntry.putExtra("rating", rating);
-                toHEditEntry.putExtra("imageUrl", image);
-                toHEditEntry.putExtra("id", id);
+                toEditEntry.putExtra("householdID", householdID);
+                toEditEntry.putExtra("pname", pname);
+                toEditEntry.putExtra("category", category);
+                toEditEntry.putExtra("capacity", capacity);
+                toEditEntry.putExtra("capacityUnits", capacityUnits);
+                toEditEntry.putExtra("imageUrl", image);
+                toEditEntry.putExtra("expiryDate", expiryDate);
+                toEditEntry.putExtra("inventoryID", inventoryID);
 
-                startActivity(toHEditEntry);
+                startActivity(toEditEntry);
             }
         });
     }
@@ -114,7 +119,7 @@ public class DetailedEntryActivity extends Activity {
                 // 6: action (edit/delete), id, pname, description, rating, imageUrl
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
                 params.add(new BasicNameValuePair("action", "delete"));
-                params.add(new BasicNameValuePair("id", id));
+                params.add(new BasicNameValuePair("inventory_id", inventoryID));
 
                 new DeleteEntry(params, DetailedEntryActivity.this, householdID).execute();
 
@@ -130,35 +135,4 @@ public class DetailedEntryActivity extends Activity {
         return Uri.parse(path);
     }
 
-    public void shareButton (final String shareText, final String imageUrl){
-        Button shareBtn = (Button) findViewById(R.id.btn_Share);
-        shareBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-                Bitmap bm = ref.getBitmap();
-
-                if (bm != null) {
-                    Uri uri= getImageUri(DetailedEntryActivity.this,bm);
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.setType("image/*");
-                    sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-                    startActivity(Intent.createChooser(sendIntent, "Share via"));
-                }
-
-                else {
-                    Uri uri= getImageUri(DetailedEntryActivity.this,bm);
-                    Intent sendIntent = new Intent();
-                    sendIntent.setAction(Intent.ACTION_SEND);
-                    sendIntent.setType("text/plain");
-                    sendIntent.putExtra(Intent.EXTRA_TEXT, shareText);
-                    startActivity(Intent.createChooser(sendIntent, "Share via"));
-                }
-            }
-        });
-
-    }
 }
