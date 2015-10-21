@@ -1,6 +1,8 @@
 package teamrenaissance.foodbasket.data;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,6 +43,9 @@ public class Entry {
         }
 
         this.id = id;
+
+        Log.d("@@@@@@@@@@@@@@ CAPACITY", getCapacity());
+        Log.d("@@@@@@@@@@@@@@ EXPIRY", getExpiryDate().toString());
     }
 
 
@@ -79,6 +84,10 @@ public class Entry {
         return this.capacity;
     }
 
+    public String getCapacityFloatStr() {
+        return (this.capacity+"");
+    }
+
     public String getCapacityUnits() {
         return this.capacityUnits;
     }
@@ -104,7 +113,7 @@ public class Entry {
     }
 
     public String getExpiryDateStr() {
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
         String dateStr = sdf2.format(this.expiryDate);
         return dateStr;
     }
@@ -128,7 +137,8 @@ public class Entry {
      */
     public String toString() {
         String str;
-        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
+//        SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
+        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
         str = sdf2.format(this.expiryDate);
         //return this.pname+"; Created on "+str;
         return this.pname;

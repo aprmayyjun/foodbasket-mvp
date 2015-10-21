@@ -50,44 +50,64 @@
             android:textColor="#ffffff" />
 
         <TextView
-            android:id="@+id/viewEntryExp"
+            android:id="@+id/viewEntryCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/viewName"
             android:layout_marginTop="30dp"
-            android:text="Description"
+            android:text="Category"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="#ffffff" />
 
         <TextView
-            android:id="@+id/viewExp"
+            android:id="@+id/viewCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEntryExp"
+            android:layout_below="@+id/viewEntryCategory"
             android:layout_marginTop="5dp"
             android:textSize="30sp"
             android:textColor="#ffffff" />
 
         <TextView
-            android:id="@+id/viewEntryRate"
+            android:id="@+id/viewEntryCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewExp"
+            android:layout_below="@+id/viewCategory"
             android:layout_marginTop="30dp"
-            android:text="Experience Rating"
+            android:text="Capacity"
             android:textSize="30sp"
             android:textStyle="bold"
             android:textColor="#ffffff" />
 
-        <RatingBar
-            android:id="@+id/viewRate"
+        <TextView
+            android:id="@+id/viewCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEntryRate"
-            android:layout_marginTop="20dp"
-            android:isIndicator="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_below="@+id/viewEntryCapacity"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/viewEntryExpiryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewCapacity"
+            android:layout_marginTop="30dp"
+            android:text="Expiry Date"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/viewExpiryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewEntryExpiryDate"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="300dp"
@@ -97,7 +117,7 @@
             android:background="#ffffff"
             android:textColor="#53bbb4"
             android:textSize="30sp"
-            android:layout_below="@+id/viewRate"
+            android:layout_below="@+id/viewExpiryDate"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp" />
 
@@ -110,18 +130,6 @@
             android:textColor="#53bbb4"
             android:textSize="30sp"
             android:layout_below="@+id/btn_Edit"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
-
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Share"
-            android:id="@+id/btn_Share"
-            android:background="#ffffff"
-            android:textColor="#53bbb4"
-            android:textSize="30sp"
-            android:layout_below="@+id/btn_Delete"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp" />
 

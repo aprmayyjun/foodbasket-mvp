@@ -26,7 +26,7 @@ public class Entries {
         Entry entry;
         String householdID, pname, cat, units, img, dateStr;
         float cap;
-        int id;
+        int inventory_id;
         JSONObject jObject;
 
         try {
@@ -45,10 +45,10 @@ public class Entries {
                 units = jObject.getString("capacity_units");
                 img = jObject.getString("picture");
                 dateStr = jObject.getString("expiry_date");
-                id = jObject.getInt("id");
+                inventory_id = jObject.getInt("inventory_id");
 
                 // initialize an Entry object for each entry read from DB
-                entry = new Entry (householdID, pname, cat, cap, units, img, dateStr, id);
+                entry = new Entry (householdID, pname, cat, cap, units, img, dateStr, inventory_id);
                 // add each Entry to the array of entries
                 entriesArray.add(entry);
             }

@@ -50,48 +50,79 @@
             android:inputType="text" />
 
         <TextView
-            android:id="@+id/editEntryExp"
+            android:id="@+id/editEntryCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editName"
             android:layout_marginTop="30dp"
-            android:text="Describe Your Experience"
+            android:text="Category"
             android:textSize="30sp"
             android:textColor="#ffffff" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editExp"
+            android:id="@+id/editCategory"
             android:textSize="30sp"
-            android:layout_below="@+id/editEntryExp"
+            android:layout_below="@+id/editEntryCategory"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp" />
 
         <TextView
-            android:id="@+id/editEntryRate"
+            android:id="@+id/editEntryCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editExp"
+            android:layout_below="@id/editCategory"
             android:layout_marginTop="30dp"
-            android:text="Rate Your Experience"
+            android:text="Capacity"
             android:textSize="30sp"
             android:textColor="#ffffff" />
 
-        <RatingBar
-            android:id="@+id/editRate"
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editCapacity"
+            android:textSize="30sp"
+            android:layout_below="@id/editEntryCapacity"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp" />
+        <!--android:layout_centerHorizontal="true"-->
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editCapacityUnits"
+            android:textSize="30sp"
+            android:layout_below="@id/editEntryCapacity"
+            android:layout_toRightOf="@id/editCapacity"
+            android:layout_marginTop="5dp" />
+        <!--android:layout_centerHorizontal="true"-->
+
+        <TextView
+            android:id="@+id/editEntryExpiryDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editEntryRate"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true" />
+            android:layout_below="@id/editCapacityUnits"
+            android:layout_marginTop="30dp"
+            android:text="Expiry Date"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editExpiryDate"
+            android:textSize="30sp"
+            android:layout_below="@id/editEntryExpiryDate"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/productImageView2"
             android:layout_marginTop="30dp"
-            android:layout_below="@+id/editRate"
+            android:layout_below="@+id/editExpiryDate"
             android:layout_centerHorizontal="true" />
 
         <Button

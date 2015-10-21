@@ -47,7 +47,6 @@ public class DetailedEntryActivity extends Activity {
     private TextView pnameView;
     private TextView categoryView;
     private TextView capacityView;
-    private TextView capacityUnitsView;
     private TextView expDateView;
     private ImageView imgView;
     private ProgressBar spinner;
@@ -72,10 +71,8 @@ public class DetailedEntryActivity extends Activity {
         categoryView = (TextView) findViewById(R.id.viewCategory);
         categoryView.setText(category);
         capacityView = (TextView) findViewById(R.id.viewCapacity);
-        capacityView.setText(capacity);
-        capacityUnitsView = (TextView) findViewById(R.id.viewCapacityUnits);
-        capacityUnitsView.setText(capacityUnits);
-        expDateView = (TextView) findViewById(R.id.viewExpiry);
+        capacityView.setText(capacity + " " + capacityUnits);
+        expDateView = (TextView) findViewById(R.id.viewExpiryDate);
         expDateView.setText(expiryDate);
         imgView = (ImageView) findViewById(R.id.productImage);
         spinner = (ProgressBar) findViewById(R.id.progressBar1);

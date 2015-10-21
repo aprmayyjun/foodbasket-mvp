@@ -312,6 +312,7 @@ public class ManageEntryUtil {
             // Check success tag
             try {
                 // shld be: success=1, message="success"
+                Log.d("jResp@@@@@@@@@@@@", jResp.toString());
                 isSuccess = jResp.getInt("success");
             } catch (JSONException e) {
                 e.printStackTrace();

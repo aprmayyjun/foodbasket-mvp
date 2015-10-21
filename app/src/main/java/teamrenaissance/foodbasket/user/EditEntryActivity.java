@@ -96,11 +96,15 @@ public class EditEntryActivity extends Activity{
             @Override
             public void onClick(View v) {
 
+                Log.d("@@ EDIT. INVENTORY ID", inventoryID + "");
+
                 String editedName = editNameET.getText().toString();
                 String editedCategory = editCategoryET.getText().toString();
                 String editedCapacity = editCapacityET.getText().toString();
                 String editedCapacityUnits = editCapacityUnitsET.getText().toString();
                 String editedExpiryDate = editExpiryDateET.getText().toString();
+
+                Log.d("@@@@@@@@@ EDIT EXPIRY", editedExpiryDate + "");
 
                 if (!(StringUtilities.isAlphaNumericPunctuation(editedName))&&!(StringUtilities.isAlphaNumericPunctuation(editedCategory))){
                     Toast.makeText(EditEntryActivity.this, "Error: Invalid Entry in field.", Toast.LENGTH_SHORT).show();
@@ -131,6 +135,7 @@ public class EditEntryActivity extends Activity{
                     Log.d("editedCapacity", editedCapacity);
                     Log.d("editedCapacityUnits", editedCapacityUnits);
                     Log.d("imageUrl", image);
+                    Log.d("editedExpiryDate", editedExpiryDate);
 
 
                     new EditEntry(params, EditEntryActivity.this, householdID).execute();

@@ -96,13 +96,12 @@ public class InventoryListActivity extends Activity {
                 toDetailed.putExtra("householdID", clickedEntry.getHouseholdID());
                 toDetailed.putExtra("pname", clickedEntry.getPName());
                 toDetailed.putExtra("category", clickedEntry.getCategory());
-                toDetailed.putExtra("capacity", clickedEntry.getCapacityFloat());
+                toDetailed.putExtra("capacity", (clickedEntry.getCapacityFloatStr()));
                 toDetailed.putExtra("capacityUnits", clickedEntry.getCapacityUnits());
                 toDetailed.putExtra("imageUrl", clickedEntry.getImageUrl());
-                toDetailed.putExtra("expiryDate", clickedEntry.getExpiryDate());
+                toDetailed.putExtra("expiryDate", clickedEntry.getExpiryDateStr());
                 toDetailed.putExtra("id", clickedEntry.getId());
                 startActivity(toDetailed);
-
             }
         });
     }

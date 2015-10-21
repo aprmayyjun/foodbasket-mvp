@@ -29,6 +29,7 @@ import java.util.List;
 
 import teamrenaissance.foodbasket.R;
 import teamrenaissance.foodbasket.admin.AccountUtil.VerifyLogin;
+import teamrenaissance.foodbasket.admin.AccountUtil.CreateAccount;
 
 /**
  * A login screen that offers login via email/password.
@@ -45,7 +46,7 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
     private View mLoginFormView;
 
 
-    private int imeActionId = getResources().getInteger(R.integer.customImeActionId);
+//    private int imeActionId = getResources().getInteger(R.integer.customImeActionId);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +63,11 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == imeActionId || id == EditorInfo.IME_NULL) {
+//                if (id == imeActionId || id == EditorInfo.IME_NULL) {
                     attemptLogin();
                     return true;
-                }
-                return false;
+//                }
+//                return false;
             }
         });
 
@@ -211,8 +212,8 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
             params.add(new BasicNameValuePair("password", password));
             params.add(new BasicNameValuePair("email", email));
 
-            // send params variable to control class: VerifyLogin (in AccountUtil)
-            new VerifyLogin(params, LoginRegisterActivity.this, householdID).execute();
+            // send params variable to control class: CreateAccount (in AccountUtil)
+            new CreateAccount(params, LoginRegisterActivity.this).execute();
 
         }
     }
@@ -224,7 +225,7 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
     }
 
     private boolean isPasswordValid(String password) {
-        return (StringUtilities.isAlphaNumeric(password) && password.length() > 6);
+        return (StringUtilities.isAlphaNumeric(password) && password.length() > 5);
     }
 
     private boolean isEmailValid(String email) {
