@@ -34,7 +34,7 @@ public class EditEntryActivity extends Activity{
     private String editExp = "";
     private String rating = "";
     private int ratingBuffer;
-    private String username = "";
+    private String householdID = "";
     private String image = "";
     private String id = "";
 
@@ -44,7 +44,7 @@ public class EditEntryActivity extends Activity{
 
     // form verification!
     // size of the following String fields not to exceed:
-    // username- 20 char
+    // householdID- 20 char
     // pname- 50 char
     // description- 255 char
     // imageurl- 50 char
@@ -53,7 +53,7 @@ public class EditEntryActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_home_user_edit_entry);
+        setContentView(R.layout.activity_edit_entry);
         setupUI(findViewById(R.id.editScreen));
 
         editNameET = (EditText)findViewById(R.id.editName);
@@ -62,7 +62,7 @@ public class EditEntryActivity extends Activity{
 
         if (getIntent().getExtras()==null)
             Log.d("null!", "null!");
-        username = getIntent().getExtras().getString("username");
+        householdID = getIntent().getExtras().getString("householdID");
 
         editName = getIntent().getExtras().getString("pname");
         editExp = getIntent().getExtras().getString("description");
@@ -95,11 +95,11 @@ public class EditEntryActivity extends Activity{
                 String editedRating = String.valueOf(ratingBuffer);
 
                 if (!(StringUtilities.isAlphaNumericPunctuation(editedName))&&!(StringUtilities.isAlphaNumericPunctuation(editedExp))){
-                    Toast.makeText(HomeuEditEntryActivity.this, "Error: Invalid Entry in field.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditEntryActivity.this, "Error: Invalid Entry in field.", Toast.LENGTH_SHORT).show();
                 } else if (editedName.equalsIgnoreCase("") || editedExp.equalsIgnoreCase("") ) {
-                    Toast.makeText(HomeuEditEntryActivity.this, "Error: All fields required.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditEntryActivity.this, "Error: All fields required.", Toast.LENGTH_SHORT).show();
                 } else if (editedName.equals(editName)&&editedExp.equals(editExp)&&editedRating.equals(rating)){
-                    Toast.makeText(HomeuEditEntryActivity.this, "Error: No changes made.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditEntryActivity.this, "Error: No changes made.", Toast.LENGTH_SHORT).show();
                 }
                 else {
 
@@ -122,7 +122,7 @@ public class EditEntryActivity extends Activity{
                     Log.d("imageUrl", image);
 
 
-                    new EditEntry(params, HomeuEditEntryActivity.this, username).execute();
+                    new EditEntry(params, EditEntryActivity.this, householdID).execute();
 
                     //startActivity(new Intent(HomeuEditEntryActivity.this,HomeuListActivity.class));
                 }
@@ -148,7 +148,7 @@ public class EditEntryActivity extends Activity{
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(HomeuEditEntryActivity.this);
+                    hideSoftKeyboard(EditEntryActivity.this);
                     return false;
                 }
 

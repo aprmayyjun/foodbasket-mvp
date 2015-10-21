@@ -38,13 +38,13 @@ public class ManageEntryUtil {
         ProgressDialog pDialog;
         JSONObject jResp = null;
         int isSuccess = 0;
-        String username;
+        String householdID;
 
-        public CreateEntryWithoutPicture (List<NameValuePair> p, Context c, String username) {
+        public CreateEntryWithoutPicture (List<NameValuePair> p, Context c, String householdID) {
             super();
             this.params = p;
             this.context = c;
-            this.username = username;
+            this.householdID = householdID;
         }
 
         // Before starting background thread Show Progress Dialog
@@ -86,17 +86,17 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("householdID", householdID));
 
-                new RetrieveEntries(params, this.context, username, option).execute();
+                new RetrieveEntries(params, this.context, householdID, option).execute();
 
                 // show registration success message in Toast if success
                 String text = "Entry successfully created.";
                 Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
 
             } else {
-                Intent toCreateEntry = new Intent (this.context, HomeuCreateEntryActivity.class);
-                toCreateEntry.putExtra("username", username);
+                Intent toCreateEntry = new Intent (this.context, CreateEntryActivity.class);
+                toCreateEntry.putExtra("householdID", householdID);
                 this.context.startActivity(toCreateEntry);
 
                 // show registration failure message in Toast if fail
@@ -115,13 +115,13 @@ public class ManageEntryUtil {
         ProgressDialog pDialog;
         JSONObject jResp = null;
         int isSuccess = 0;
-        String username;
+        String householdID;
 
-        public CreateEntryWithPicture (List<NameValuePair> p, Context c, String username) {
+        public CreateEntryWithPicture (List<NameValuePair> p, Context c, String householdID) {
             super();
             this.params = p;
             this.context = c;
-            this.username = username;
+            this.householdID = householdID;
         }
 
         // Before starting background thread Show Progress Dialog
@@ -174,17 +174,17 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("householdID", householdID));
 
-                new RetrieveEntries(params, this.context, username, option).execute();
+                new RetrieveEntries(params, this.context, householdID, option).execute();
 
                 // show registration success message in Toast if success
                 String text = "Entry successfully created.";
                 Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
 
             } else {
-                Intent toCreateEntry = new Intent (this.context, HomeuCreateEntryActivity.class);
-                toCreateEntry.putExtra("username", username);
+                Intent toCreateEntry = new Intent (this.context, CreateEntryActivity.class);
+                toCreateEntry.putExtra("householdID", householdID);
                 this.context.startActivity(toCreateEntry);
 
                 // show registration failure message in Toast if fail
@@ -203,13 +203,13 @@ public class ManageEntryUtil {
         ProgressDialog pDialog;
         JSONObject jResp = null;
         int isSuccess = 0;
-        String username;
+        String householdID;
 
-        public DeleteEntry (List<NameValuePair> p, Context c, String username) {
+        public DeleteEntry (List<NameValuePair> p, Context c, String householdID) {
             super();
             this.params = p;
             this.context = c;
-            this.username = username;
+            this.householdID = householdID;
         }
 
         // Before starting background thread Show Progress Dialog
@@ -252,17 +252,17 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("householdID", householdID));
 
-                new RetrieveEntries(params, this.context, username, option).execute();
+                new RetrieveEntries(params, this.context, householdID, option).execute();
 
                 // show registration success message in Toast if success
                 String text = "Entry successfully deleted.";
                 Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
 
             } else {
-                Intent toHDetailedEntry = new Intent (this.context, HomeuDetailedEntryActivity.class);
-                toHDetailedEntry.putExtra("username", username);
+                Intent toHDetailedEntry = new Intent (this.context, DetailedEntryActivity.class);
+                toHDetailedEntry.putExtra("householdID", householdID);
                 this.context.startActivity(toHDetailedEntry);
 
                 // show registration failure message in Toast if fail
@@ -282,13 +282,13 @@ public class ManageEntryUtil {
         ProgressDialog pDialog;
         JSONObject jResp = null;
         int isSuccess = 0;
-        String username;
+        String householdID;
 
-        public EditEntry (List<NameValuePair> p, Context c, String username) {
+        public EditEntry (List<NameValuePair> p, Context c, String householdID) {
             super();
             this.params = p;
             this.context = c;
-            this.username = username;
+            this.householdID = householdID;
         }
 
         // Before starting background thread Show Progress Dialog
@@ -330,17 +330,17 @@ public class ManageEntryUtil {
 
                 // add the data collected to params variable to be sent to server
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
-                params.add(new BasicNameValuePair("username", username));
+                params.add(new BasicNameValuePair("householdID", householdID));
 
-                new RetrieveEntries(params, this.context, username, option).execute();
+                new RetrieveEntries(params, this.context, householdID, option).execute();
 
                 // show registration success message in Toast if success
                 String text = "Entry successfully updated.";
                 Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
 
             } else {
-                Intent toHDetailedEntry = new Intent (this.context, HomeuDetailedEntryActivity.class);
-                toHDetailedEntry.putExtra("username", username);
+                Intent toHDetailedEntry = new Intent (this.context, DetailedEntryActivity.class);
+                toHDetailedEntry.putExtra("householdID", householdID);
                 this.context.startActivity(toHDetailedEntry);
 
                 // show registration failure message in Toast if fail

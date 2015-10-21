@@ -5,13 +5,10 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.LoaderManager.LoaderCallbacks;
-import android.content.ContentResolver;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -20,17 +17,17 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import teamrenaissance.foodbasket.R;
-import teamrenaissance.foodbasket.admin.AccountUtil.CreateAccount;
 import teamrenaissance.foodbasket.admin.AccountUtil.VerifyLogin;
 
 /**
@@ -38,22 +35,11 @@ import teamrenaissance.foodbasket.admin.AccountUtil.VerifyLogin;
  */
 public class LoginRegisterActivity extends Activity implements LoaderCallbacks<Cursor> {
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "limfamily:hello", "tanfamily:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask mAuthTask = null;
-
     // UI references.
     //private AutoCompleteTextView mEmailView;
     private EditText mUsernameView;
     private EditText mPasswordView;
+    private EditText mEmailView;
     private TextView mErrorView;
     private View mProgressView;
     private View mLoginFormView;
@@ -67,10 +53,12 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
         setContentView(R.layout.activity_login);
 
         // Set up the login form.
-        //mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
-        //populateAutoComplete();
 
+        mUsernameView = (EditText) findViewById(R.id.householdID);
         mPasswordView = (EditText) findViewById(R.id.password);
+        mEmailView = (EditText) findViewById(R.id.email);
+        mErrorView = (TextView) findViewById(R.id.error);
+
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
@@ -90,33 +78,29 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
             }
         });
 
+        Button mRegisterButton = (Button) findViewById(R.id.register_button);
+        mRegisterButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                attemptRegister();
+            }
+        });
+
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
 
         mErrorView = (TextView) findViewById(R.id.error);
     }
 
-    private void populateAutoComplete() {
-        getLoaderManager().initLoader(0, null, this);
-    }
-
-
     /**
-     * Attempts to sign in or register the account specified by the login form.
+     * Attempts to sign in the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
     public void attemptLogin() {
-        if (mAuthTask != null) {
-            return;
-        }
-
-        // Reset errors.
-        mUsernameView.setError(null);
-        mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String username = mUsernameView.getText().toString();
+        String householdID = mUsernameView.getText().toString();
         String password = mPasswordView.getText().toString();
 
         boolean cancel = false;
@@ -130,11 +114,11 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(username)) {
+        if (TextUtils.isEmpty(householdID)) {
             mUsernameView.setError(getString(R.string.error_field_required));
             focusView = mUsernameView;
             cancel = true;
-        } else if (!isUsernameValid(username)) {
+        } else if (!isUsernameValid(householdID)) {
             mUsernameView.setError(getString(R.string.error_invalid_username));
             focusView = mUsernameView;
             cancel = true;
@@ -147,25 +131,107 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
+
+//            showProgress(true);
 //            mAuthTask = new VerifyLogin(username, password);
 //            mAuthTask.execute((Void) null);
 
-            // @@@@@
+
+            // add the data collected to params variable to be sent to server
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("householdID", householdID));
+            params.add(new BasicNameValuePair("password", password));
+
             // send params variable to control class: VerifyLogin (in AccountUtil)
-            new VerifyLogin(params, LoginActivity.this, username).execute();
+            new VerifyLogin(params, LoginRegisterActivity.this, householdID).execute();
+
         }
     }
 
+    /**
+     * Attempts to register the account specified by the login form.
+     * If there are form errors (invalid email, missing fields, etc.), the
+     * errors are presented and no actual register attempt is made.
+     */
+    public void attemptRegister() {
+
+        // Store values at the time of the login attempt.
+        String householdID = mUsernameView.getText().toString();
+        String password = mPasswordView.getText().toString();
+        String email = mEmailView.getText().toString();
+
+        boolean cancel = false;
+        View focusView = null;
+
+        // Check for a valid password, if the user entered one.
+        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+            mPasswordView.setError(getString(R.string.error_invalid_password));
+            focusView = mPasswordView;
+            cancel = true;
+        }
+
+        // Check for a valid username.
+        if (TextUtils.isEmpty(householdID)) {
+            mUsernameView.setError(getString(R.string.error_field_required));
+            focusView = mUsernameView;
+            cancel = true;
+        } else if (!isUsernameValid(householdID)) {
+            mUsernameView.setError(getString(R.string.error_invalid_username));
+            focusView = mUsernameView;
+            cancel = true;
+        }
+
+        // Check for a valid email address.
+        if (TextUtils.isEmpty(email)) {
+            mEmailView.setError(getString(R.string.error_field_required));
+            focusView = mEmailView;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            mEmailView.setError(getString(R.string.error_invalid_email));
+            focusView = mEmailView;
+            cancel = true;
+        }
+
+        if (cancel) {
+            // There was an error; don't attempt login and focus the first
+            // form field with an error.
+            focusView.requestFocus();
+        } else {
+            // Show a progress spinner, and kick off a background task to
+            // perform the user login attempt.
+
+//            showProgress(true);
+//            mAuthTask = new VerifyLogin(username, password);
+//            mAuthTask.execute((Void) null);
+
+
+            // add the data collected to params variable to be sent to server
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("householdID", householdID));
+            params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("email", email));
+
+            // send params variable to control class: VerifyLogin (in AccountUtil)
+            new VerifyLogin(params, LoginRegisterActivity.this, householdID).execute();
+
+        }
+    }
+
+
+
     private boolean isUsernameValid(String username) {
-        //TODO: Replace this with your own logic
-        return username.length() > 4;
+        return (StringUtilities.isAlphaNumeric(username) && username.length() > 4);
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
-        return password.length() > 6;
+        return (StringUtilities.isAlphaNumeric(password) && password.length() > 6);
     }
+
+    private boolean isEmailValid(String email) {
+        return StringUtilities.isEmail(email);
+    }
+
+
 
     /**
      * Shows the progress UI and hides the login form.
@@ -251,15 +317,5 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
         int IS_PRIMARY = 1;
     }
 
-    /*
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
-        //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
-
-        mEmailView.setAdapter(adapter);
-    }
-    */
 }
 

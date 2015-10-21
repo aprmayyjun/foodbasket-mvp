@@ -1,12 +1,109 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="teamrenaissance.foodbasket.user.InventoryListActivity">
+<?xml version="1.0" encoding="utf-8"?>
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#53bbb4"
+    android:orientation="vertical"
+    tools:context="teamrenaissance.foodbasket.user.InventoryListActivity" >
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/editScreen"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin" >
+
+        <TextView
+            android:id="@+id/editEntry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Edit Entry"
+            android:layout_centerHorizontal="true"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff" />
+
+        <TextView
+            android:id="@+id/editEntryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editEntry"
+            android:layout_marginTop="60dp"
+            android:text="Product Name"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editName"
+            android:layout_below="@+id/editEntryName"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp"
+            android:inputType="text" />
+
+        <TextView
+            android:id="@+id/editEntryExp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editName"
+            android:layout_marginTop="30dp"
+            android:text="Describe Your Experience"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editExp"
+            android:textSize="30sp"
+            android:layout_below="@+id/editEntryExp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp" />
+
+        <TextView
+            android:id="@+id/editEntryRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editExp"
+            android:layout_marginTop="30dp"
+            android:text="Rate Your Experience"
+            android:textSize="30sp"
+            android:textColor="#ffffff" />
+
+        <RatingBar
+            android:id="@+id/editRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editEntryRate"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/productImageView2"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/editRate"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/bth_editSubmit"
+            android:background="#ffffff"
+            android:textColor="#53bbb4"
+            android:textSize="30sp"
+            android:layout_below="@id/productImageView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60dp" />
+
+    </RelativeLayout>
+</ScrollView>

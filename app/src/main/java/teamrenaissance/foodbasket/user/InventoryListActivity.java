@@ -1,28 +1,23 @@
 package teamrenaissance.foodbasket.user;
 
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.ArrayAdapter;
+import java.util.Comparator;
+import java.util.Date;
 
-import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
 import teamrenaissance.foodbasket.R;
+import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
 import teamrenaissance.foodbasket.data.Entries;
 import teamrenaissance.foodbasket.data.Entry;
 
@@ -38,7 +33,7 @@ public class InventoryListActivity extends Activity {
     Entries entries = null;
     Bundle extras;
     Boolean newuser = false;
-    String username = null;
+    String householdID = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +41,7 @@ public class InventoryListActivity extends Activity {
         setContentView(R.layout.activity_inventory_list);
 
         extras = getIntent().getExtras();
-        username = extras.getString("username");
+        householdID = extras.getString("householdID");
         if (extras.getString("newuser")!=null) {
             newuser = true;
         }
@@ -96,9 +91,9 @@ public class InventoryListActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> paret, View viewClicked, int position, long id) {
                 //TextView textview=(TextView) viewClicked;
-                Entry clickedEntry = HomeuListActivity.this.entries.entriesArray.get(position);
-                Intent toHDetailed = new Intent(HomeuListActivity.this,HomeuDetailedEntryActivity.class);
-                toHDetailed.putExtra("username", clickedEntry.getUsername());
+                Entry clickedEntry = InventoryListActivity.this.entries.entriesArray.get(position);
+                Intent toHDetailed = new Intent(InventoryListActivity.this, DetailedEntryActivity.class);
+                toHDetailed.putExtra("householdID", clickedEntry.getUsername());
                 toHDetailed.putExtra("pname", clickedEntry.getPName());
                 toHDetailed.putExtra("description", clickedEntry.getDescription());
                 toHDetailed.putExtra("rating", clickedEntry.getRating());
@@ -115,9 +110,9 @@ public class InventoryListActivity extends Activity {
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toHCreateEntry = new Intent(HomeuListActivity.this,HomeuCreateEntryActivity.class);
-                Log.d("cf", "username in put extra is "+username);
-                toHCreateEntry.putExtra("username", username);
+                Intent toHCreateEntry = new Intent(InventoryListActivity.this,CreateEntryActivity.class);
+                Log.d("cf", "householdID in put extra is "+householdID);
+                toHCreateEntry.putExtra("householdID", householdID);
                 startActivity(toHCreateEntry);
 
 
@@ -132,7 +127,7 @@ public class InventoryListActivity extends Activity {
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toLogin = new Intent(HomeuListActivity.this, LoginActivity.class);
+                Intent toLogin = new Intent(InventoryListActivity.this, LoginRegisterActivity.class);
                 startActivity(toLogin);
             }
         });

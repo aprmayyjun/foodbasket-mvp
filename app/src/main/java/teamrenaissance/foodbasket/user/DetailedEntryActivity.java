@@ -1,31 +1,27 @@
 package teamrenaissance.foodbasket.user;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
-import android.net.Uri;
-import android.os.Bundle;
-import android.provider.MediaStore.Images;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
-import android.util.Base64;
-import android.util.Log;
-import android.view.*;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore.Images;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import teamrenaissance.foodbasket.R;
-import teamrenaissance.foodbasket.R.drawable;
 import teamrenaissance.foodbasket.data.ManageEntryUtil.DeleteEntry;
 //import teamrenaissance.foodbasket.data.ImageUtil;
 //import teamrenaissance.foodbasket.data.ImageUtil.DownloadImageTask;
@@ -43,7 +39,7 @@ public class DetailedEntryActivity extends Activity {
     private String pname = "";
     private String description = "";
     private String rating = "";
-    private String username = "";
+    private String householdID = "";
     private String image = "";
     private String id = "";
     private String shareText = "";
@@ -59,9 +55,9 @@ public class DetailedEntryActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_user_view_entry);
+        setContentView(R.layout.activity_detailed_entry);
 
-        username = getIntent().getExtras().getString("username");
+        householdID = getIntent().getExtras().getString("householdID");
         pname = getIntent().getExtras().getString("pname");
         description = getIntent().getExtras().getString("description");
         rating = getIntent().getExtras().getString("rating");
@@ -93,9 +89,9 @@ public class DetailedEntryActivity extends Activity {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent toHEditEntry = new Intent(HomeuDetailedEntryActivity.this,HomeuEditEntryActivity.class);
+                Intent toHEditEntry = new Intent(DetailedEntryActivity.this, EditEntryActivity.class);
 
-                toHEditEntry.putExtra("username", username);
+                toHEditEntry.putExtra("householdID", householdID);
                 toHEditEntry.putExtra("pname", pname);
                 toHEditEntry.putExtra("description", description);
                 toHEditEntry.putExtra("rating", rating);
@@ -120,7 +116,7 @@ public class DetailedEntryActivity extends Activity {
                 params.add(new BasicNameValuePair("action", "delete"));
                 params.add(new BasicNameValuePair("id", id));
 
-                new DeleteEntry(params, HomeuDetailedEntryActivity.this, username).execute();
+                new DeleteEntry(params, DetailedEntryActivity.this, householdID).execute();
 
 
             }
@@ -144,7 +140,7 @@ public class DetailedEntryActivity extends Activity {
                 Bitmap bm = ref.getBitmap();
 
                 if (bm != null) {
-                    Uri uri= getImageUri(HomeuDetailedEntryActivity.this,bm);
+                    Uri uri= getImageUri(DetailedEntryActivity.this,bm);
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.setType("image/*");
@@ -154,7 +150,7 @@ public class DetailedEntryActivity extends Activity {
                 }
 
                 else {
-                    Uri uri= getImageUri(HomeuDetailedEntryActivity.this,bm);
+                    Uri uri= getImageUri(DetailedEntryActivity.this,bm);
                     Intent sendIntent = new Intent();
                     sendIntent.setAction(Intent.ACTION_SEND);
                     sendIntent.setType("text/plain");

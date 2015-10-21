@@ -13,33 +13,31 @@ import java.util.Date;
  */
 public class Entry {
 
-    private String username;
-    private int age;
+    // sql data: PRODUCTS_TABLE (id, product_id, product_name, category, capacity, capacity_units, picture)
+    // sql data: INVENTORY_TABLE (id, household_id, product_id, expiry_date)
+    private String householdID;
     private String pname;
-    private String description;
-    private String rating;
+    private String category;
+    private float capacity;
+    private String capacityUnits;
     private String imageUrl;
-    private Date date;
+    private Date expiryDate;
     private int id;
 
     // constructor for entries read from database for viewing purposes
     @SuppressLint("SimpleDateFormat")
-    public Entry (String uname, int yob, String pname, String desc, String rating, String img, String dateStr, int id) {
+    public Entry (String householdID, String pname, String cat, float cap, String units, String img, String dateStr, int id) {
 
-        this.username = uname;
-
-        Calendar cal = Calendar.getInstance();
-        int yearNow = cal.get(Calendar.YEAR);
-        this.age = yearNow - yob;
-
+        this.householdID = householdID;
         this.pname = pname;
-        this.description = desc;
-        this.rating = rating;
+        this.category = cat;
+        this.capacity = cap;
+        this.capacityUnits = units;
         this.imageUrl = img;
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
         try {
-            this.date = sdf.parse(dateStr);
+            this.expiryDate = sdf.parse(dateStr);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -51,20 +49,12 @@ public class Entry {
     /**
      * Getters and Setters
      */
-    public String getUsername() {
-        return this.username;
+    public String getHouseholdID() {
+        return this.householdID;
     }
 
-    public void setUsername(String uname) {
-        this.username = uname;
-    }
-
-    public int getAge() {
-        return this.age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+    public void setHouseholdID(String id) {
+        this.householdID = id;
     }
 
     public String getPName() {
@@ -75,24 +65,32 @@ public class Entry {
         this.pname = pname;
     }
 
-    public String getDescription() {
-        return this.description;
+    public String getCategory() {
+        return this.category;
     }
 
-    public void setDescription(String desc) {
-        this.description = desc;
+    public void setCategory(String cat) {
+        this.category = cat;
     }
 
-    public String getRating() {
-        return this.rating;
+    public String getCapacity() {
+        return (this.capacity + this.capacityUnits);
     }
 
-    public int getRatingInt() {
-        return Integer.valueOf(this.rating);
+    public float getCapacityFloat() {
+        return this.capacity;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public String getCapacityUnits() {
+        return this.capacityUnits;
+    }
+
+    public void setCapacityFloat(float cap) {
+        this.capacity = cap;
+    }
+
+    public void setCapacityUnits(String units) {
+        this.capacityUnits = units;
     }
 
     public String getImageUrl() {
@@ -103,18 +101,18 @@ public class Entry {
         this.imageUrl = img;
     }
 
-    public Date getDate() {
-        return this.date;
+    public Date getExpiryDate() {
+        return this.expiryDate;
     }
 
-    public String getDateStr() {
+    public String getExpiryDateStr() {
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
-        String dateStr = sdf2.format(this.date);
+        String dateStr = sdf2.format(this.expiryDate);
         return dateStr;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setExpiryDate(Date date) {
+        this.expiryDate = date;
     }
 
     public String getId() {
@@ -133,7 +131,7 @@ public class Entry {
     public String toString() {
         String str;
         SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy, hh:mm");
-        str = sdf2.format(this.date);
+        str = sdf2.format(this.expiryDate);
         //return this.pname+"; Created on "+str;
         return this.pname;
     }

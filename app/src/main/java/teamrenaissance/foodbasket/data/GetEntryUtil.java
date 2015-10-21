@@ -42,13 +42,13 @@ public class GetEntryUtil {
         JSONObject jResp = null;
         Entries entriesList;
         int isSuccess = 0;
-        String username;
+        String householdID;
 
-        public RetrieveEntries (List<NameValuePair> p, Context c, String username, int op) {
+        public RetrieveEntries (List<NameValuePair> p, Context c, String householdID, int op) {
             super();
             this.params = p;
             this.context = c;
-            this.username = username;
+            this.householdID = householdID;
             this.option = op;
         }
 
@@ -89,38 +89,11 @@ public class GetEntryUtil {
             pDialog.dismiss();
 
             if (isSuccess == 1 && jResp != null) {
-
-                if (this.option == 0) {
-                    // Send JSONobj to HomeuListActivity.class
-                    Intent toHListAct = new Intent (this.context, HomeuListActivity.class);
-                    toHListAct.putExtra("username", username);
-                    toHListAct.putExtra("json", jResp.toString());
-                    this.context.startActivity(toHListAct);
-
-                } else if (0 < this.option && this.option < 4) {
-                    // Send JSONobj to EmployeeListActivity.class
-                    Intent toEListAct = new Intent (this.context, EmployeeListActivity.class);
-                    toEListAct.putExtra("username", username);
-                    toEListAct.putExtra("json", jResp.toString());
-                    toEListAct.putExtra("option", this.option);
-                    this.context.startActivity(toEListAct);
-
-                } else if (3 < this.option && this.option < 7) {
-                    // Send JSONobj to EmployeeGraphActivity.class
-                    Intent toGraphAct = new Intent (this.context, EmployeeGraphActivity.class);
-                    toGraphAct.putExtra("username", username);
-                    toGraphAct.putExtra("json", jResp.toString());
-                    toGraphAct.putExtra("option", this.option);
-                    this.context.startActivity(toGraphAct);
-
-                } else {
-                    Intent toLogIn = new Intent(this.context, LoginActivity.class);
-                    this.context.startActivity(toLogIn);
-
-                    // show log-in failure message in Toast if fail
-                    String text = "Error occurred. Please try again...";
-                    Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
-                }
+                // Send JSONobj to InventoryListActivity.class
+                Intent toListAct = new Intent (this.context, InventoryListActivity.class);
+                toListAct.putExtra("householdID", householdID);
+                toListAct.putExtra("json", jResp.toString());
+                this.context.startActivity(toListAct);
             } else
                 try {
                     if (isSuccess == 0 && jResp!= null && jResp.getString("message").equals("Error: Query did not return a result")) {
@@ -128,18 +101,16 @@ public class GetEntryUtil {
                         String text = "No existing posts";
                         Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
 
-                        if (this.option == 0) {
-                            // Send JSONobj to HomeuListActivity.class
-                            Intent toHListAct = new Intent (this.context, HomeuListActivity.class);
-                            toHListAct.putExtra("username", username);
-                            toHListAct.putExtra("newuser", "newuser");
-                            toHListAct.putExtra("json", jResp.toString());
-                            this.context.startActivity(toHListAct);
-                        }
+                        // Send JSONobj to InventoryListActivity.class
+                        Intent toListAct = new Intent (this.context, InventoryListActivity.class);
+                        toListAct.putExtra("householdID", householdID);
+                        toListAct.putExtra("newuser", "newuser");
+                        toListAct.putExtra("json", jResp.toString());
+                        this.context.startActivity(toListAct);
 
                     }
                     else {
-                        Intent toLogIn = new Intent(this.context, LoginActivity.class);
+                        Intent toLogIn = new Intent(this.context, LoginRegisterActivity.class);
                         this.context.startActivity(toLogIn);
 
                         // show log-in failure message in Toast if fail

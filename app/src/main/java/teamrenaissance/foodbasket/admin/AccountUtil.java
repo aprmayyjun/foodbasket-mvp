@@ -81,7 +81,7 @@ public class AccountUtil {
                 this.context.startActivity(toLogInPage);
 
             } else {
-                Intent toRegister = new Intent(this.context, RegisterActivity.class);
+                Intent toRegister = new Intent(this.context, LoginRegisterActivity.class);
                 this.context.startActivity(toRegister);
                 // show register failure message in Toast if fail
                 String text = "Failed to create account. Please try again...";
@@ -101,13 +101,13 @@ public class AccountUtil {
         ProgressDialog pDialog;
         JSONObject jResp;
         int isVerified = 0;
-        String username;
+        String householdID;
 
-        public VerifyLogin(List<NameValuePair> p, Context c, String username) {
+        public VerifyLogin(List<NameValuePair> p, Context c, String householdID) {
             super();
             this.params = p;
             this.context = c;
-            this.username = username;
+            this.householdID = householdID;
         }
 
         // Before starting background thread Show Progress Dialog
@@ -123,7 +123,7 @@ public class AccountUtil {
 
         // Verify log-in with PHP server
         protected Void doInBackground(Void... arg) {
-            Log.d("verify username", username);
+            Log.d("verify householdID", householdID);
             Log.d("verify params", params.toString());
             // Send log-in details to PHP server and receive response
             PHPConnectorInterface phpC = new PHPConnector ();
@@ -146,29 +146,17 @@ public class AccountUtil {
 
             // Change activity based on results
             if (isVerified==1) {
-                Log.d("cf", "isVerified");
 
-                // verified and user is employee
-                if (username.equals("employee")) {
-                    Log.d("cf", "isEmployee");
-                    Intent toEmployeeMainPage = new Intent(this.context,
-                            EmployeeMainActivity.class);
-                    toEmployeeMainPage.putExtra("username", username);
-                    this.context.startActivity(toEmployeeMainPage);
-                }
-                // verified and user is home user
-                else {
+                Log.d("ENTER HERE!!!", jResp.toString());
+                int option = 0;
 
-                    Log.d("ENTER HERE!!!", jResp.toString());
-                    int option = 0;
+                // add the data collected to params variable to be sent to server
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("householdID", householdID));
 
-                    // add the data collected to params variable to be sent to server
-                    List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("username", username));
+                Log.d("gga", jResp.toString());
+                new RetrieveEntries(params, this.context, householdID, option).execute();
 
-                    Log.d("gga", jResp.toString());
-                    new RetrieveEntries(params, this.context, username, option).execute();
-                }
             } else {
                 Intent toLogIn = new Intent(this.context, LoginRegisterActivity.class);
                 this.context.startActivity(toLogIn);

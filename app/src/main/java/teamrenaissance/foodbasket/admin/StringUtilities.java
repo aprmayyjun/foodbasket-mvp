@@ -1,8 +1,5 @@
 package teamrenaissance.foodbasket.admin;
 
-import java.util.Calendar;
-
-
 /**
  * Provides utilities for checking validity of Strings input by users
  *
@@ -31,22 +28,5 @@ public class StringUtilities {
             return true;
         }
         return false;
-    }
-
-
-    public static boolean isValidYob (String s) {
-        int yobInt;
-        try {
-            yobInt = Integer.parseInt(s);
-        } catch(NumberFormatException e) {
-            return false;
-        }
-        if (yobInt > Calendar.getInstance().get(Calendar.YEAR)) {
-            return false;
-        }
-        // only got here if we didn't return false
-        return true;
-
-
     }
 }

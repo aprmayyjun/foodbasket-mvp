@@ -42,7 +42,7 @@ public class CreateEntryActivity extends Activity{
     private String newExp;
     private String rating;
     private int ratingBuffer;
-    private String username;
+    private String householdID;
     private Date date;
     private String dateString;
 
@@ -62,10 +62,10 @@ public class CreateEntryActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_home_user_create_entry);
+        setContentView(R.layout.activity_create_entry);
         setupUI(findViewById(R.id.createScreen));
 
-        username = getIntent().getExtras().getString("username");
+        householdID = getIntent().getExtras().getString("householdID");
 
         newnameET = (EditText)findViewById(R.id.newName);
         newexpET = (EditText)findViewById(R.id.newExp);
@@ -93,24 +93,24 @@ public class CreateEntryActivity extends Activity{
 
                 // Check for validity of input
                 if (!(StringUtilities.isAlphaNumericPunctuation(newName))&&!(StringUtilities.isAlphaNumericPunctuation(newExp))){
-                    Toast.makeText(HomeuCreateEntryActivity.this, "Error: Invalid Entry into field", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateEntryActivity.this, "Error: Invalid Entry into field", Toast.LENGTH_SHORT).show();
                 } else if (newName.equalsIgnoreCase("") || newExp.equalsIgnoreCase("") ) {
-                    Toast.makeText(HomeuCreateEntryActivity.this, "Error: All fields required", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CreateEntryActivity.this, "Error: All fields required", Toast.LENGTH_SHORT).show();
                 } else {
 
                     // add the data collected to params variable to be sent to server
-                    // 6: username, pname, description, rating, imageUrl, date;
+                    // 6: householdID, pname, description, rating, imageUrl, date;
                     List<NameValuePair> params = new ArrayList<NameValuePair>();
-                    params.add(new BasicNameValuePair("username", username));
+                    params.add(new BasicNameValuePair("householdID", householdID));
                     params.add(new BasicNameValuePair("pname", newName));
                     params.add(new BasicNameValuePair("description", newExp));
                     params.add(new BasicNameValuePair("rating", rating));
                     params.add(new BasicNameValuePair("date", dateString));
 
                     if (bitmap == null)
-                        new CreateEntryWithoutPicture(params, HomeuCreateEntryActivity.this, username).execute();
+                        new CreateEntryWithoutPicture(params, CreateEntryActivity.this, householdID).execute();
                     else
-                        new CreateEntryWithPicture(params, HomeuCreateEntryActivity.this, username).execute(bitmap);
+                        new CreateEntryWithPicture(params, CreateEntryActivity.this, householdID).execute(bitmap);
                 }
             }
         });
@@ -140,7 +140,7 @@ public class CreateEntryActivity extends Activity{
             if (requestCode == SELECT_PICTURE) {
                 imageUri = data.getData();
                 img.setImageURI(imageUri);
-                imagePath = ImageUtil.getPath(HomeuCreateEntryActivity.this, imageUri);
+                imagePath = ImageUtil.getPath(CreateEntryActivity.this, imageUri);
                 BitmapFactory.Options bmOptions = new BitmapFactory.Options();
                 bmOptions.inSampleSize = 3;
                 bitmap = BitmapFactory.decodeFile(imagePath, bmOptions);
@@ -165,7 +165,7 @@ public class CreateEntryActivity extends Activity{
 
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
-                    hideSoftKeyboard(HomeuCreateEntryActivity.this);
+                    hideSoftKeyboard(CreateEntryActivity.this);
                     return false;
                 }
 
