@@ -32,5 +32,7 @@
     <string name="title_activity_detailed_entry">DetailedEntryActivity</string>
     <string name="title_activity_edit_entry">EditEntryActivity</string>
     <string name="title_activity_inventory_list">InventoryListActivity</string>
+    <string name="title_activity_tab_host">TabHostActivity</string>
+    <string name="title_activity_recipe_list">RecipeListActivity</string>
 
 </resources>

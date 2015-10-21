@@ -15,6 +15,7 @@ import android.widget.Toast;
 import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
 import teamrenaissance.foodbasket.admin.PHPConnector;
 import teamrenaissance.foodbasket.admin.PHPConnectorInterface;
+import teamrenaissance.foodbasket.admin.TabHostActivity;
 import teamrenaissance.foodbasket.user.InventoryListActivity;
 
 /**
@@ -90,7 +91,9 @@ public class GetEntryUtil {
 
             if (isSuccess == 1 && jResp != null) {
                 // Send JSONobj to InventoryListActivity.class
-                Intent toListAct = new Intent (this.context, InventoryListActivity.class);
+//                Intent toListAct = new Intent (this.context, InventoryListActivity.class);
+
+                Intent toListAct = new Intent (this.context, TabHostActivity.class);
                 toListAct.putExtra("householdID", householdID);
                 toListAct.putExtra("json", jResp.toString());
                 this.context.startActivity(toListAct);
@@ -102,7 +105,7 @@ public class GetEntryUtil {
                         Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
 
                         // Send JSONobj to InventoryListActivity.class
-                        Intent toListAct = new Intent (this.context, InventoryListActivity.class);
+                        Intent toListAct = new Intent (this.context, TabHostActivity.class);
                         toListAct.putExtra("householdID", householdID);
                         toListAct.putExtra("newuser", "newuser");
                         toListAct.putExtra("json", jResp.toString());
