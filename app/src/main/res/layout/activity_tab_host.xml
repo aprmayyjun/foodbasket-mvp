@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="teamrenaissance.foodbasket.admin.TabHostActivity"
-    android:id="@android:id/tabhost" >
+    android:id="@android:id/tabhost">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,7 +23,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:layout_marginBottom="-4dp"/>
+            android:layout_marginBottom="-4dp"
+            android:background="#cccccc" />
 
     </LinearLayout>
 

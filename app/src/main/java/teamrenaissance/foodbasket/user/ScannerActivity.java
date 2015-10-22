@@ -1,7 +1,9 @@
 package teamrenaissance.foodbasket.user;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -14,10 +16,16 @@ import com.mirasense.scanditsdk.interfaces.ScanditSDKCode;
 import com.mirasense.scanditsdk.interfaces.ScanditSDKOnScanListener;
 import com.mirasense.scanditsdk.interfaces.ScanditSDKScanSession;
 
+import teamrenaissance.foodbasket.R;
+
 public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnScanListener {
 
     // The main object for recognizing a displaying barcodes.
     private ScanditSDK mBarcodePicker;
+
+    private Bundle extras;
+    private Boolean newuser = false;
+    private String householdID = null;
 
     // Enter your Scandit SDK App key here.
     public static final String sScanditSdkAppKey = "i/UIWO7JIYDxe/hF3o7HskB16fa4rFqqpUOkxRCR7RM";
@@ -25,6 +33,12 @@ public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnSc
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        extras = getIntent().getExtras();
+        householdID = extras.getString("householdID");
+        if (extras.getString("newuser")!=null) {
+            newuser = true;
+        }
 
         // Switch to full screen.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -107,6 +121,34 @@ public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnSc
         }
         mToast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         mToast.show();
+    }
+
+
+
+    // To set up the action bar in the screen
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_scanner, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.scanner_option_1) {
+            Intent toManualEntry = new Intent(ScannerActivity.this, CreateEntryActivity.class);
+            toManualEntry.putExtra("householdID", householdID);
+            startActivity(toManualEntry);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

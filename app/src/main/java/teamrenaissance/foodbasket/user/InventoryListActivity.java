@@ -52,11 +52,6 @@ public class InventoryListActivity extends AppCompatActivity {
             initialise();
             population();
         }
-
-//        setButtonEntry();
-        setButtonOrderByExpiryDate();
-        setButtonOrderByAlphabet();
-
     }
 
     private void initialise() {
@@ -110,47 +105,6 @@ public class InventoryListActivity extends AppCompatActivity {
         });
     }
 
-    public void setButtonEntry (){
-//        Button editButton=(Button)findViewById(R.id.inventory_option_1);
-//        editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent toHCreateEntry = new Intent(InventoryListActivity.this, CreateEntryActivity.class);
-//                Log.d("cf", "householdID in put extra is " + householdID);
-//                toHCreateEntry.putExtra("householdID", householdID);
-//                startActivity(toHCreateEntry);
-//            }
-//        });
-    }
-
-    public void setButtonOrderByExpiryDate (){
-//        Button editButton=(Button)findViewById(R.id.inventory_option_2);
-//        editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // TODO: LOGIC PLS
-////                Intent toHCreateEntry = new Intent(InventoryListActivity.this,CreateEntryActivity.class);
-////                Log.d("cf", "householdID in put extra is "+householdID);
-////                toHCreateEntry.putExtra("householdID", householdID);
-////                startActivity(toHCreateEntry);
-//            }
-//        });
-    }
-
-    public void setButtonOrderByAlphabet (){
-//        Button editButton=(Button)findViewById(R.id.inventory_option_2);
-//        editButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // TODO: LOGIC PLS
-////                Intent toHCreateEntry = new Intent(InventoryListActivity.this,CreateEntryActivity.class);
-////                Log.d("cf", "householdID in put extra is "+householdID);
-////                toHCreateEntry.putExtra("householdID", householdID);
-////                startActivity(toHCreateEntry);
-//            }
-//        });
-    }
-
 
     // To set up the action bar in the screen
     @Override
@@ -169,6 +123,21 @@ public class InventoryListActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.inventory_option_1) {
+            Intent toScannerActivity = new Intent(InventoryListActivity.this, ScannerActivity.class);
+            toScannerActivity.putExtra("householdID", householdID);
+            startActivity(toScannerActivity);
+            return true;
+        }
+
+        else if (id == R.id.inventory_option_2) {
+            Intent toHCreateEntry = new Intent(InventoryListActivity.this, CreateEntryActivity.class);
+            Log.d("cf", "householdID in put extra is " + householdID);
+            toHCreateEntry.putExtra("householdID", householdID);
+            startActivity(toHCreateEntry);
+            return true;
+        }
+
+        else if (id == R.id.inventory_option_3) {
             Intent toHCreateEntry = new Intent(InventoryListActivity.this, CreateEntryActivity.class);
             Log.d("cf", "householdID in put extra is " + householdID);
             toHCreateEntry.putExtra("householdID", householdID);

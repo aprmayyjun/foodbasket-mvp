@@ -4,7 +4,11 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import teamrenaissance.foodbasket.R;
 import teamrenaissance.foodbasket.user.InventoryListActivity;
@@ -30,22 +34,13 @@ public class TabHostActivity extends TabActivity {
         // Pass arguments from previous activity to next activity
         intent.putExtras(getIntent().getExtras());
         spec = tabHost.newTabSpec("inventory")
-//                .setIndicator("INVENTORY", res.getDrawable(R.drawable.ic_tab_home))
+//                .setIndicator("INVENTORY", getResource(R.drawable.app_icon))
                 .setIndicator("INVENTORY")
                 .setContent(intent);
         tabHost.addTab(spec);
 
 
         // Do the same for the other tabs
-
-//        intent = new Intent().setClass(this, ScannerActivity.class);
-//        // Pass arguments from previous activity to next activity
-//        intent.putExtras(getIntent().getExtras());
-//        spec = tabHost.newTabSpec("scan")
-//                .setIndicator("SCAN")
-//                .setContent(intent);
-//        tabHost.addTab(spec);
-
 
         intent = new Intent().setClass(this, RecipeListActivity.class);
         // Pass arguments from previous activity to next activity
