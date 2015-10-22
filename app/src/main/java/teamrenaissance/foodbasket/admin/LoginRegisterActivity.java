@@ -41,7 +41,6 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
     private EditText mUsernameView;
     private EditText mPasswordView;
     private EditText mEmailView;
-    private TextView mErrorView;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -58,7 +57,6 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
         mUsernameView = (EditText) findViewById(R.id.username);
         mPasswordView = (EditText) findViewById(R.id.password);
         mEmailView = (EditText) findViewById(R.id.email);
-        mErrorView = (TextView) findViewById(R.id.error);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -89,8 +87,6 @@ public class LoginRegisterActivity extends Activity implements LoaderCallbacks<C
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
-
-        mErrorView = (TextView) findViewById(R.id.error);
     }
 
     /**

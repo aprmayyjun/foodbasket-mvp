@@ -56,15 +56,18 @@ public class AccountUtil {
             PHPConnectorInterface phpC = new PHPConnector ();
             jResp = phpC.addAccountToDB(this.params);
             Log.d("register response", jResp.toString());
-            // Check success tag
-            try {
-                // shld be: success=1, message="success"
-                isSuccess = jResp.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
+
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    // shld be: success=1, message="success"
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
             return null;
-//			return null;
         }
 
         // After completing background task Dismiss the progress dialog
@@ -129,12 +132,14 @@ public class AccountUtil {
             PHPConnectorInterface phpC = new PHPConnector ();
             jResp = phpC.verifyLogin(this.params);
 
-            // Check verification tag
-            try {
-                // shld be: success=1, message="success"
-                isVerified = jResp.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (jResp != null) {
+                // Check verification tag
+                try {
+                    // shld be: success=1, message="success"
+                    isVerified = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }

@@ -10,6 +10,7 @@ import teamrenaissance.foodbasket.R;
 import teamrenaissance.foodbasket.user.InventoryListActivity;
 import teamrenaissance.foodbasket.user.RecipeListActivity;
 import teamrenaissance.foodbasket.user.ScannerActivity;
+import teamrenaissance.foodbasket.user.SettingsActivity;
 
 public class TabHostActivity extends TabActivity {
 
@@ -26,6 +27,7 @@ public class TabHostActivity extends TabActivity {
 
         // Create an Intent to launch an Activity for the tab (to be reused)
         intent = new Intent().setClass(this, InventoryListActivity.class);
+        // Pass arguments from previous activity to next activity
         intent.putExtras(getIntent().getExtras());
         spec = tabHost.newTabSpec("inventory")
 //                .setIndicator("INVENTORY", res.getDrawable(R.drawable.ic_tab_home))
@@ -36,19 +38,29 @@ public class TabHostActivity extends TabActivity {
 
         // Do the same for the other tabs
 
-        intent = new Intent().setClass(this, ScannerActivity.class);
+//        intent = new Intent().setClass(this, ScannerActivity.class);
+//        // Pass arguments from previous activity to next activity
+//        intent.putExtras(getIntent().getExtras());
+//        spec = tabHost.newTabSpec("scan")
+//                .setIndicator("SCAN")
+//                .setContent(intent);
+//        tabHost.addTab(spec);
+
+
+        intent = new Intent().setClass(this, RecipeListActivity.class);
+        // Pass arguments from previous activity to next activity
         intent.putExtras(getIntent().getExtras());
-        spec = tabHost.newTabSpec("scan")
-                .setIndicator("SCAN")
+        spec = tabHost.newTabSpec("cookbook")
+                .setIndicator("COOKBOOK")
                 .setContent(intent);
         tabHost.addTab(spec);
 
 
-        intent = new Intent().setClass(this, RecipeListActivity.class);
+        intent = new Intent().setClass(this, SettingsActivity.class);
+        // Pass arguments from previous activity to next activity
         intent.putExtras(getIntent().getExtras());
-        spec = tabHost
-                .newTabSpec("recipes")
-                .setIndicator("RECIPES")
+        spec = tabHost.newTabSpec("settings")
+                .setIndicator("SETTINGS")
                 .setContent(intent);
         tabHost.addTab(spec);
 

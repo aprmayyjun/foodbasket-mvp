@@ -2,6 +2,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="teamrenaissance.foodbasket.user.RecipeListActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <!--<item android:id="@+id/cookbook_option_1" android:title="@string/cookbook_option_1_string"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
+
+    <!--<item android:id="@+id/cookbook_option_2" android:title="@string/cookbook_option_2_string"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
+
+    <!--<item android:id="@+id/cookbook_option_3" android:title="@string/cookbook_option_3_string"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
+
 </menu>

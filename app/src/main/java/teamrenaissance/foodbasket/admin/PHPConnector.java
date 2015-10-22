@@ -14,7 +14,9 @@ public class PHPConnector implements PHPConnectorInterface{
 
     //IP address of server
     // static String ipAddr = "http://54.186.228.154/foodvengers/";
-    static String ipAddr = "http://192.168.0.103:8888/";
+
+//    static String ipAddr = "http://192.168.0.103:8888/";
+    static String ipAddr = "http://10.0.2.2:8888/";
 
     public JSONObject verifyLogin (List<NameValuePair> params) {
         JSONConnector jParser = new JSONConnector();

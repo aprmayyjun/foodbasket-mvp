@@ -72,14 +72,16 @@ public class GetEntryUtil {
             jResp = phpC.getEntriesFromDB(this.params);
             Log.d("ENTER HERE!!!", jResp.toString());
 
-            // Check success tag
-            try {
-                // shld be: success=1, message="success"
-                Log.d("jResp123", jResp.toString());
-                isSuccess = jResp.getInt("success");
-            } catch (JSONException e) {
-                Log.d("ERROR", "E");
-                e.printStackTrace();
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    // shld be: success=1, message="success"
+                    Log.d("jResp123", jResp.toString());
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    Log.d("ERROR", "E");
+                    e.printStackTrace();
+                }
             }
             return null;
         }

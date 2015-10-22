@@ -31,8 +31,13 @@
     <string name="title_activity_create_entry">CreateEntryActivity</string>
     <string name="title_activity_detailed_entry">DetailedEntryActivity</string>
     <string name="title_activity_edit_entry">EditEntryActivity</string>
-    <string name="title_activity_inventory_list">InventoryListActivity</string>
+    <string name="title_activity_inventory_list">Household Inventory</string>
     <string name="title_activity_tab_host">TabHostActivity</string>
     <string name="title_activity_recipe_list">RecipeListActivity</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <string name="inventory_option_1_string">Add Item</string>
+    <string name="inventory_option_2_string">Order by Expiry Date</string>
+    <string name="inventory_option_3_string">Order by Alphabet</string>
 
 </resources>

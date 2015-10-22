@@ -94,19 +94,9 @@ public class CreateEntryActivity extends Activity{
             public void onClick(View v) {
                 newName = newnameET.getText().toString();
                 newCategory = newCategoryET.getText().toString();
-
                 tmpCapacityStr = newCapacityET.getText().toString();
-                newCapacity = new Float(tmpCapacityStr);
-
                 newCapacityUnits = newCapacityUnitsET.getText().toString();
                 tmpDateStr = newExpiryDateET.getText().toString();
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    newExpiryDate = sdf.parse(tmpDateStr);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
 
                 // Check for validity of input
                 if (!(StringUtilities.isAlphaNumericPunctuation(newName))&&!(StringUtilities.isAlphaNumericPunctuation(newCategory))){
@@ -114,6 +104,15 @@ public class CreateEntryActivity extends Activity{
                 } else if (newName.equalsIgnoreCase("") || newCategory.equalsIgnoreCase("")) {
                     Toast.makeText(CreateEntryActivity.this, "Error: All fields required", Toast.LENGTH_SHORT).show();
                 } else {
+
+                    newCapacity = new Float(tmpCapacityStr);
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    try {
+                        newExpiryDate = sdf.parse(tmpDateStr);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
                     // add the data collected to params variable to be sent to server
                     // 6: householdID, pname, description, rating, imageUrl, date;

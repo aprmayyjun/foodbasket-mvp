@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#53bbb4"
     android:orientation="vertical"
     tools:context="teamrenaissance.foodbasket.user.EditEntryActivity" >
+    <!--android:background="#53bbb4"-->
 
     <RelativeLayout
         android:id="@+id/editScreen"
@@ -23,11 +23,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Edit Entry"
+            android:text="EDIT ENTRY"
             android:layout_centerHorizontal="true"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="#ffffff" />
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold" />
+        <!--android:textColor="#ffffff"-->
 
         <TextView
             android:id="@+id/editEntryName"
@@ -36,18 +36,16 @@
             android:layout_below="@+id/editEntry"
             android:layout_marginTop="60dp"
             android:text="Product Name"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
+        <!--android:textSize="30sp"-->
+        <!--android:textColor="#ffffff"-->
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView
             android:id="@+id/editName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/editEntryName"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            android:textSize="30sp"
-            android:inputType="text" />
+            android:layout_marginTop="5dp" />
 
         <TextView
             android:id="@+id/editEntryCategory"
@@ -56,16 +54,13 @@
             android:layout_below="@+id/editName"
             android:layout_marginTop="30dp"
             android:text="Category"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <TextView
             android:id="@+id/editCategory"
-            android:textSize="30sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/editEntryCategory"
-            android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -75,24 +70,22 @@
             android:layout_below="@id/editCategory"
             android:layout_marginTop="30dp"
             android:text="Capacity"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
 
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:id="@+id/editCapacity"
-            android:textSize="30sp"
             android:layout_below="@id/editEntryCapacity"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:inputType="numberDecimal" />
         <!--android:layout_centerHorizontal="true"-->
 
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:id="@+id/editCapacityUnits"
-            android:textSize="30sp"
             android:layout_below="@id/editEntryCapacity"
             android:layout_toRightOf="@id/editCapacity"
             android:layout_marginTop="5dp" />
@@ -105,37 +98,29 @@
             android:layout_below="@id/editCapacityUnits"
             android:layout_marginTop="30dp"
             android:text="Expiry Date"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/editExpiryDate"
-            android:textSize="30sp"
             android:layout_below="@id/editEntryExpiryDate"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/productImageView2"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/editExpiryDate"
-            android:layout_centerHorizontal="true" />
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp"
+            android:inputType="date" />
 
         <Button
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/bth_editSubmit"
-            android:background="#ffffff"
-            android:textColor="#53bbb4"
-            android:textSize="30sp"
-            android:layout_below="@id/productImageView2"
+            android:layout_below="@id/editExpiryDate"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="60dp" />
+            android:layout_marginTop="@dimen/button_top_margin" />
+        <!--android:background="#ffffff"-->
+        <!--android:textColor="#53bbb4"-->
+        <!--android:textSize="30sp"-->
 
     </RelativeLayout>
 

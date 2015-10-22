@@ -45,7 +45,7 @@ public class Entry {
         this.id = id;
 
         Log.d("@@@@@@@@@@@@@@ CAPACITY", getCapacity());
-        Log.d("@@@@@@@@@@@@@@ EXPIRY", getExpiryDate().toString());
+        Log.d("@@@@@@@@@@@@@@ EXPIRY", getExpiryDateStr());
     }
 
 

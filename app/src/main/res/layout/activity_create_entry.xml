@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#53bbb4"
     android:orientation="vertical"
     tools:context="teamrenaissance.foodbasket.user.CreateEntryActivity" >
+    <!--android:background="#53bbb4"-->
 
     <RelativeLayout
         android:id="@+id/createScreen"
@@ -23,21 +23,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="New Entry"
+            android:text="NEW ENTRY"
             android:layout_centerHorizontal="true"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:textColor="#ffffff" />
+            android:textSize="@dimen/text_size_title"
+            android:textStyle="bold" />
+        <!--android:textColor="#ffffff"-->
 
         <TextView
             android:id="@+id/newEntryName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/newEntry"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="50dp"
             android:text="Product Name"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
+        <!--android:textColor="#ffffff"-->
 
         <EditText
             android:layout_width="match_parent"
@@ -46,8 +46,8 @@
             android:layout_below="@id/newEntryName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
-            android:textSize="30sp"
             android:inputType="text" />
+        <!--android:textSize="30sp"-->
 
         <TextView
             android:id="@+id/newEntryCategory"
@@ -56,14 +56,13 @@
             android:layout_below="@id/newName"
             android:layout_marginTop="30dp"
             android:text="Category"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
+        <!--android:textSize="30sp"-->
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/newCategory"
-            android:textSize="30sp"
             android:layout_below="@id/newEntryCategory"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp" />
@@ -75,24 +74,22 @@
             android:layout_below="@id/newCategory"
             android:layout_marginTop="30dp"
             android:text="Capacity"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
 
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:id="@+id/newCapacity"
-            android:textSize="30sp"
             android:layout_below="@id/newEntryCapacity"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:inputType="numberDecimal" />
             <!--android:layout_centerHorizontal="true"-->
 
         <EditText
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:id="@+id/newCapacityUnits"
-            android:textSize="30sp"
             android:layout_below="@id/newEntryCapacity"
             android:layout_toRightOf="@id/newCapacity"
             android:layout_marginTop="5dp" />
@@ -105,17 +102,16 @@
             android:layout_below="@id/newCapacity"
             android:layout_marginTop="30dp"
             android:text="Expiry Date"
-            android:textSize="30sp"
-            android:textColor="#ffffff" />
+            android:textStyle="bold" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/newExpiryDate"
-            android:textSize="30sp"
             android:layout_below="@id/newEntryExpiryDate"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:inputType="date" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -126,28 +122,28 @@
             android:layout_centerHorizontal="true" />
 
         <Button
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Import Photo"
             android:id="@+id/btn_newMedia"
-            android:background="#ffffff"
-            android:textColor="#53bbb4"
-            android:textSize="30sp"
             android:layout_below="@id/productImageView"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp" />
+            android:layout_marginTop="@dimen/button_top_margin" />
+        <!--android:background="#ffffff"-->
+        <!--android:textColor="#53bbb4"-->
+        <!--android:textSize="30sp"-->
 
         <Button
-            android:layout_width="300dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/btn_newSubmit"
-            android:background="#ffffff"
-            android:textColor="#53bbb4"
-            android:textSize="30sp"
             android:layout_below="@id/btn_newMedia"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="@dimen/button_top_margin" />
+        <!--android:background="#ffffff"-->
+        <!--android:textColor="#53bbb4"-->
+        <!--android:textSize="30sp"-->
 
     </RelativeLayout>
 

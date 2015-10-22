@@ -3,38 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#53bbb4"
     android:orientation="vertical"
     tools:context="teamrenaissance.foodbasket.user.InventoryListActivity" >
+    <!--android:background="#53bbb4"-->
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Create Entry"
-        android:id="@+id/btn_createEntry"
-        android:background="#ffffff"
-        android:textColor="#53bbb4"
-        android:textSize="30sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
-
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:id="@+id/btn_logout"
-        android:background="#ffffff"
-        android:textColor="#53bbb4"
-        android:textSize="30sp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true" />
+    <!--<Button-->
+        <!--android:layout_width="150dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Create Entry"-->
+        <!--android:id="@+id/btn_createEntry"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_alignParentTop="true"  />-->
+    <!--android:background="#ffffff"-->
+    <!--android:textColor="#53bbb4"-->
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@id/btn_logout"
-        android:layout_below="@+id/btn_logout" >
+        android:layout_height="wrap_content" >
+        <!--android:layout_alignRight="@id/btn_createEntry"-->
+        <!--android:layout_below="@+id/btn_createEntry"-->
     </ListView>
 
 </RelativeLayout>

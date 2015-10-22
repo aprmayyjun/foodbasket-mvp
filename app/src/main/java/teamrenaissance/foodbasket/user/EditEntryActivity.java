@@ -15,6 +15,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
@@ -40,8 +41,8 @@ public class EditEntryActivity extends Activity{
     private String editExpiryDate = "";
     private String inventoryID = "";
 
-    EditText editNameET;
-    EditText editCategoryET;
+    TextView editNameTV;
+    TextView editCategoryTV;
     EditText editCapacityET;
     EditText editCapacityUnitsET;
     EditText editExpiryDateET;
@@ -60,8 +61,8 @@ public class EditEntryActivity extends Activity{
         setContentView(R.layout.activity_edit_entry);
         setupUI(findViewById(R.id.editScreen));
 
-        editNameET = (EditText)findViewById(R.id.editName);
-        editCategoryET = (EditText)findViewById(R.id.editCategory);
+        editNameTV = (TextView)findViewById(R.id.editName);
+        editCategoryTV = (TextView)findViewById(R.id.editCategory);
         editCapacityET = (EditText)findViewById(R.id.editCapacity);
         editCapacityUnitsET = (EditText)findViewById(R.id.editCapacityUnits);
         editExpiryDateET = (EditText)findViewById(R.id.editExpiryDate);
@@ -80,8 +81,8 @@ public class EditEntryActivity extends Activity{
 
         button();
 
-        editNameET.setText(editName);
-        editCategoryET.setText(editCategory);
+        editNameTV.setText(editName);
+        editCategoryTV.setText(editCategory);
         editCapacityET.setText(editCapacity);
         editCapacityUnitsET.setText(editCapacityUnits);
         editExpiryDateET.setText(editExpiryDate);
@@ -98,8 +99,8 @@ public class EditEntryActivity extends Activity{
 
                 Log.d("@@ EDIT. INVENTORY ID", inventoryID + "");
 
-                String editedName = editNameET.getText().toString();
-                String editedCategory = editCategoryET.getText().toString();
+                String editedName = editNameTV.getText().toString();
+                String editedCategory = editCategoryTV.getText().toString();
                 String editedCapacity = editCapacityET.getText().toString();
                 String editedCapacityUnits = editCapacityUnitsET.getText().toString();
                 String editedExpiryDate = editExpiryDateET.getText().toString();

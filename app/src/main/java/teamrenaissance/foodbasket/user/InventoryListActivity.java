@@ -3,7 +3,10 @@ package teamrenaissance.foodbasket.user;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,7 +30,7 @@ import teamrenaissance.foodbasket.data.Entry;
  * An item in the list can be selected to view that entry in detail.
  *
  */
-public class InventoryListActivity extends Activity {
+public class InventoryListActivity extends AppCompatActivity {
 
 
     Entries entries = null;
@@ -50,8 +53,9 @@ public class InventoryListActivity extends Activity {
             population();
         }
 
-        setButtonEntry();
-        setButtonLogout();
+//        setButtonEntry();
+        setButtonOrderByExpiryDate();
+        setButtonOrderByAlphabet();
 
     }
 
@@ -106,32 +110,73 @@ public class InventoryListActivity extends Activity {
         });
     }
 
-    public void setButtonEntry(){
-        Button editButton=(Button)findViewById(R.id.btn_createEntry);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toHCreateEntry = new Intent(InventoryListActivity.this,CreateEntryActivity.class);
-                Log.d("cf", "householdID in put extra is "+householdID);
-                toHCreateEntry.putExtra("householdID", householdID);
-                startActivity(toHCreateEntry);
-
-
-            }
-        });
-
+    public void setButtonEntry (){
+//        Button editButton=(Button)findViewById(R.id.inventory_option_1);
+//        editButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent toHCreateEntry = new Intent(InventoryListActivity.this, CreateEntryActivity.class);
+//                Log.d("cf", "householdID in put extra is " + householdID);
+//                toHCreateEntry.putExtra("householdID", householdID);
+//                startActivity(toHCreateEntry);
+//            }
+//        });
     }
 
-    public void setButtonLogout(){
-        Button logoutButton = (Button)findViewById(R.id.btn_logout);
+    public void setButtonOrderByExpiryDate (){
+//        Button editButton=(Button)findViewById(R.id.inventory_option_2);
+//        editButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // TODO: LOGIC PLS
+////                Intent toHCreateEntry = new Intent(InventoryListActivity.this,CreateEntryActivity.class);
+////                Log.d("cf", "householdID in put extra is "+householdID);
+////                toHCreateEntry.putExtra("householdID", householdID);
+////                startActivity(toHCreateEntry);
+//            }
+//        });
+    }
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent toLogin = new Intent(InventoryListActivity.this, LoginRegisterActivity.class);
-                startActivity(toLogin);
-            }
-        });
+    public void setButtonOrderByAlphabet (){
+//        Button editButton=(Button)findViewById(R.id.inventory_option_2);
+//        editButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // TODO: LOGIC PLS
+////                Intent toHCreateEntry = new Intent(InventoryListActivity.this,CreateEntryActivity.class);
+////                Log.d("cf", "householdID in put extra is "+householdID);
+////                toHCreateEntry.putExtra("householdID", householdID);
+////                startActivity(toHCreateEntry);
+//            }
+//        });
+    }
+
+
+    // To set up the action bar in the screen
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_inventory_list, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.inventory_option_1) {
+            Intent toHCreateEntry = new Intent(InventoryListActivity.this, CreateEntryActivity.class);
+            Log.d("cf", "householdID in put extra is " + householdID);
+            toHCreateEntry.putExtra("householdID", householdID);
+            startActivity(toHCreateEntry);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

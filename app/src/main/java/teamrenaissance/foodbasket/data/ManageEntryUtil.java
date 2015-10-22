@@ -65,13 +65,16 @@ public class ManageEntryUtil {
             PHPConnectorInterface phpC = new PHPConnector ();
             jResp = phpC.addEntryToDB(this.params);
 
-            // Check success tag
-            try {
-                // shld be: success=1, message="success"
-                isSuccess = jResp.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    // shld be: success=1, message="success"
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
             return null;
         }
 
@@ -153,13 +156,16 @@ public class ManageEntryUtil {
             PHPConnectorInterface phpC = new PHPConnector ();
             jResp = phpC.addEntryToDB(this.params);
 
-            // Check success tag
-            try {
-                // shld be: success=1, message="success"
-                isSuccess = jResp.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    // shld be: success=1, message="success"
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
             return null;
         }
 
@@ -230,14 +236,17 @@ public class ManageEntryUtil {
             PHPConnectorInterface phpC = new PHPConnector ();
             jResp = phpC.updateEntryInDB(this.params);
 
-            // Check success tag
-            try {
-                Log.d("deleteEntry resp: ", jResp.toString());
-                // shld be: success=1, message="success"
-                isSuccess = jResp.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    Log.d("deleteEntry resp: ", jResp.toString());
+                    // shld be: success=1, message="success"
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
             return null;
         }
 
@@ -309,14 +318,17 @@ public class ManageEntryUtil {
             PHPConnectorInterface phpC = new PHPConnector ();
             jResp = phpC.updateEntryInDB(this.params);
 
-            // Check success tag
-            try {
-                // shld be: success=1, message="success"
-                Log.d("jResp@@@@@@@@@@@@", jResp.toString());
-                isSuccess = jResp.getInt("success");
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    // shld be: success=1, message="success"
+                    Log.d("jResp@@@@@@@@@@@@", jResp.toString());
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+
             return null;
         }
 
