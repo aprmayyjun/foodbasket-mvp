@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="teamrenaissance.foodbasket.user.DetailedEntryActivity" >
+    tools:context="teamrenaissance.foodbasket.user.ProductInfoActivity" >
     <!--android:background="#53bbb4"-->
 
     <RelativeLayout
@@ -19,10 +19,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:id="@+id/imageDiv" >
+            android:id="@+id/imageDivProduct" >
 
             <ProgressBar
-                android:id="@+id/progressBar1"
+                android:id="@+id/progressBar2"
                 style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,83 +33,67 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/entryImage"
+                android:id="@+id/productImage"
                 android:layout_centerHorizontal="true" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/viewEntryName"
+            android:id="@+id/productInfoName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_below="@+id/imageDiv"
+            android:layout_below="@+id/imageDivProduct"
             android:text="Product Name"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/viewName"
+            android:id="@+id/productName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEntryName"
+            android:layout_below="@+id/productInfoName"
             android:layout_marginTop="5dp" />
         <!--android:textSize="30sp"-->
         <!--android:textColor="#ffffff"-->
 
         <TextView
-            android:id="@+id/viewEntryCategory"
+            android:id="@+id/productInfoCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewName"
+            android:layout_below="@+id/productName"
             android:layout_marginTop="30dp"
             android:text="Category"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/viewCategory"
+            android:id="@+id/productCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEntryCategory"
+            android:layout_below="@+id/productInfoCategory"
             android:layout_marginTop="5dp" />
 
         <TextView
-            android:id="@+id/viewEntryCapacity"
+            android:id="@+id/productInfoCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewCategory"
+            android:layout_below="@+id/productCategory"
             android:layout_marginTop="30dp"
             android:text="Capacity"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/viewCapacity"
+            android:id="@+id/productCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEntryCapacity"
-            android:layout_marginTop="5dp" />
-
-        <TextView
-            android:id="@+id/viewEntryExpiryDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/viewCapacity"
-            android:layout_marginTop="30dp"
-            android:text="Expiry Date"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/viewExpiryDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/viewEntryExpiryDate"
+            android:layout_below="@+id/productInfoCapacity"
             android:layout_marginTop="5dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Edit"
-            android:id="@+id/btn_Edit"
-            android:layout_below="@+id/viewExpiryDate"
+            android:id="@+id/btn_EditProduct"
+            android:layout_below="@+id/productCapacity"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp" />
         <!--android:background="#ffffff"-->
@@ -119,9 +103,9 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delete"
-            android:id="@+id/btn_Delete"
-            android:layout_below="@+id/btn_Edit"
+            android:text="Submit"
+            android:id="@+id/btn_SubmitProduct"
+            android:layout_below="@+id/btn_EditProduct"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/button_top_margin" />
 

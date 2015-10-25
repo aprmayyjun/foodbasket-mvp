@@ -43,6 +43,7 @@ public Bitmap getBitmap()
 {
     return this.bm;
 }
+
 protected Bitmap doInBackground(String... urls) {
 
     try {

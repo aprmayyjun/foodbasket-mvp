@@ -22,7 +22,7 @@ public class Entry {
     private String capacityUnits;
     private String imageUrl;
     private Date expiryDate;
-    private int id;
+    private int inventoryID;
 
     // constructor for entries read from database for viewing purposes
     @SuppressLint("SimpleDateFormat")
@@ -42,12 +42,11 @@ public class Entry {
             e.printStackTrace();
         }
 
-        this.id = id;
+        this.inventoryID = id;
 
         Log.d("@@@@@@@@@@@@@@ CAPACITY", getCapacity());
         Log.d("@@@@@@@@@@@@@@ EXPIRY", getExpiryDateStr());
     }
-
 
     /**
      * Getters and Setters
@@ -122,12 +121,12 @@ public class Entry {
         this.expiryDate = date;
     }
 
-    public String getId() {
-        return String.valueOf(this.id);
+    public String getInventoryID() {
+        return String.valueOf(this.inventoryID);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setInventoryID(int id) {
+        this.inventoryID = id;
     }
 
 

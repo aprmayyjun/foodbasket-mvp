@@ -87,6 +87,10 @@
             android:name=".user.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
+        <activity
+            android:name=".user.ProductInfoActivity"
+            android:label="@string/title_activity_product_info" >
+        </activity>
     </application>
 
 </manifest>

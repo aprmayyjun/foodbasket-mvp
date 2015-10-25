@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -15,10 +17,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,9 +45,13 @@ import teamrenaissance.foodbasket.data.ManageEntryUtil.CreateEntryWithoutPicture
  * Collects the input from the user and passes the information to the corresponding control class.
  *
  */
-public class CreateEntryActivity extends Activity{
+public class CreateEntryActivity extends AppCompatActivity {
 
+
+    private Bundle extras;
     private String householdID;
+    private String json;
+
     private String newName;
     private String newCategory;
     private String tmpCapacityStr;
@@ -50,6 +60,7 @@ public class CreateEntryActivity extends Activity{
     private Date newExpiryDate;
     private String tmpDateStr;
 
+    private TextView newBarcodeTV;
     private EditText newnameET;
     private EditText newCategoryET;
     private EditText newCapacityET;
@@ -71,8 +82,11 @@ public class CreateEntryActivity extends Activity{
         setContentView(R.layout.activity_create_entry);
         setupUI(findViewById(R.id.createScreen));
 
-        householdID = getIntent().getExtras().getString("householdID");
+        extras = getIntent().getExtras();
+        householdID = extras.getString("householdID");
+        json = extras.getString("json");
 
+        newBarcodeTV = (TextView)findViewById(R.id.newBarcode);
         newnameET = (EditText)findViewById(R.id.newName);
         newCategoryET = (EditText)findViewById(R.id.newCategory);
         newCapacityET = (EditText)findViewById(R.id.newCapacity);
@@ -82,9 +96,30 @@ public class CreateEntryActivity extends Activity{
         submitButton = (Button) findViewById(R.id.btn_newSubmit);
         img = (ImageView) findViewById(R.id.productImageView);
 
+
+        if (json!=null) {
+            extractAndSetBarcodeText();
+        }
         setButtons();
         setPictureButton();
     }
+
+
+    private void extractAndSetBarcodeText () {
+
+        try {
+            JSONObject jResp = new JSONObject(json);
+            String barcode = jResp.getString("barcode");
+
+            if (newBarcodeTV != null)
+                newBarcodeTV.setText(barcode);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public void setButtons () {
 

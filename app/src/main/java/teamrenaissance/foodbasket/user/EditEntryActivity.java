@@ -6,6 +6,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,7 +31,7 @@ import teamrenaissance.foodbasket.data.ManageEntryUtil.EditEntry;;
  *
  */
 
-public class EditEntryActivity extends Activity{
+public class EditEntryActivity extends AppCompatActivity {
 
     private String householdID = "";
     private String editName = "";

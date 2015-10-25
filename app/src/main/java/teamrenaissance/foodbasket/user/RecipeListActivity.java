@@ -8,7 +8,7 @@ import android.view.MenuItem;
 
 import teamrenaissance.foodbasket.R;
 
-public class RecipeListActivity extends Activity {
+public class RecipeListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

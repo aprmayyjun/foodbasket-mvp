@@ -1,6 +1,7 @@
 package teamrenaissance.foodbasket.user;
 
 import android.content.Intent;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,14 @@ import com.mirasense.scanditsdk.interfaces.ScanditSDKCode;
 import com.mirasense.scanditsdk.interfaces.ScanditSDKOnScanListener;
 import com.mirasense.scanditsdk.interfaces.ScanditSDKScanSession;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import teamrenaissance.foodbasket.R;
+import teamrenaissance.foodbasket.data.GetEntryUtil;
 
 public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnScanListener {
 
@@ -26,6 +34,8 @@ public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnSc
     private Bundle extras;
     private Boolean newuser = false;
     private String householdID = null;
+
+    private Context context;
 
     // Enter your Scandit SDK App key here.
     public static final String sScanditSdkAppKey = "i/UIWO7JIYDxe/hF3o7HskB16fa4rFqqpUOkxRCR7RM";
@@ -46,7 +56,8 @@ public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnSc
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_scanner);
+        // TODO: un-commented this line below. test layout first!
+        setContentView(R.layout.activity_scanner);
 
         // Initialize and start the bar code recognition.
         initializeAndStartBarcodeScanning();
@@ -97,15 +108,17 @@ public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnSc
     }
 
 
+    // TODO: add scanning logic
     // this callback is called whenever a barcode is decoded successfully.
     @Override
     public void didScan(ScanditSDKScanSession session) {
         String message = "";
         Toast mToast = null;
+        String barcode = null;
 
         for (ScanditSDKCode code : session.getNewlyDecodedCodes()) {
             String data = code.getData();
-            // truncate code to certain length
+            // truncate barcode to certain length
             String cleanData = data;
             if (data.length() > 30) {
                 cleanData = data.substring(0, 25) + "[...]";
@@ -113,14 +126,27 @@ public class ScannerActivity extends AppCompatActivity implements ScanditSDKOnSc
             if (message.length() > 0) {
                 message += "\n\n\n";
             }
-            message += cleanData;
-            message += "\n\n(" + code.getSymbologyString() + ")";
+
+            message += "Barcode detected..";
+            // cleanData = (13-digit) barcode detected
+            message += "\n\n(" + cleanData + ", " + code.getSymbologyString() + ")";
+
+            barcode = cleanData;
         }
         if (mToast != null) {
             mToast.cancel();
         }
         mToast = Toast.makeText(this, message, Toast.LENGTH_LONG);
         mToast.show();
+
+        if (barcode != null) {
+            Log.d("BARCODE IS NOT NULL @@@", "!!");
+            // add the data collected to params variable to be sent to server
+            List<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("barcode", barcode));
+            new GetEntryUtil.RetrieveProduct(params, ScannerActivity.this, householdID).execute();
+        }
+
     }
 
 

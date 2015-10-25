@@ -99,7 +99,7 @@ public class InventoryListActivity extends AppCompatActivity {
                 toDetailed.putExtra("capacityUnits", clickedEntry.getCapacityUnits());
                 toDetailed.putExtra("imageUrl", clickedEntry.getImageUrl());
                 toDetailed.putExtra("expiryDate", clickedEntry.getExpiryDateStr());
-                toDetailed.putExtra("id", clickedEntry.getId());
+                toDetailed.putExtra("id", clickedEntry.getInventoryID());
                 startActivity(toDetailed);
             }
         });

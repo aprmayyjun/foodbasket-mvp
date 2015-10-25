@@ -12,7 +12,7 @@ import android.widget.Button;
 import teamrenaissance.foodbasket.R;
 import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
 
-public class SettingsActivity extends Activity {
+public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

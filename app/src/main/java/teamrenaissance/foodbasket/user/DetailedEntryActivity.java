@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore.Images;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,7 +34,7 @@ import teamrenaissance.foodbasket.data.ManageEntryUtil.DeleteEntry;
  *
  */
 
-public class DetailedEntryActivity extends Activity {
+public class DetailedEntryActivity extends AppCompatActivity {
 
     private String householdID = "";
     private String pname = "";
@@ -74,7 +75,7 @@ public class DetailedEntryActivity extends Activity {
         capacityView.setText(capacity + " " + capacityUnits);
         expDateView = (TextView) findViewById(R.id.viewExpiryDate);
         expDateView.setText(expiryDate);
-        imgView = (ImageView) findViewById(R.id.productImage);
+        imgView = (ImageView) findViewById(R.id.entryImage);
         spinner = (ProgressBar) findViewById(R.id.progressBar1);
         ref = new ImageUtil.DownloadImageTask(imgView, image, spinner);
         ref.execute();
