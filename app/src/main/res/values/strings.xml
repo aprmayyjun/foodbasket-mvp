@@ -11,9 +11,9 @@
     <string name="prompt_username">Household ID</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_email">Email Address</string>
-    <string name="action_sign_in">Sign In</string>
-    <string name="action_register">Register</string>
-    <string name="action_sign_in_short">Sign In</string>
+    <string name="action_sign_in">SIGN IN</string>
+    <string name="action_register">REGISTER</string>
+    <string name="action_sign_in_short">SIGN IN</string>
 
     <string name="error_invalid_username">This username is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
@@ -24,13 +24,14 @@
 
     <string name="title_activity_login">Sign in or Register</string>
     <string name="title_activity_create_entry">Create a New Item Entry</string>
-    <string name="title_activity_detailed_entry">Item Detail</string>
+    <string name="title_activity_detailed_entry">Item Information</string>
     <string name="title_activity_edit_entry">Edit Item Entry</string>
     <string name="title_activity_inventory_list">Household Inventory</string>
     <string name="title_activity_recipe_list">List of Recipes</string>
     <string name="title_activity_settings">Account Settings</string>
     <string name="title_activity_scanner">Scan Your Item</string>
     <string name="title_activity_product_info">Review Product Information</string>
+    <string name="title_activity_detailed_recipe">Recipe Information</string>
     <string name="title_activity_tab_host">TabHostActivity</string>
 
     <string name="inventory_option_1_string">Add Item</string>

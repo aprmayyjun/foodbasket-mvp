@@ -80,7 +80,7 @@
             android:label="@string/title_activity_tab_host" >
         </activity>
         <activity
-            android:name=".user.RecipeListActivity"
+            android:name=".user.RecipesListActivity"
             android:label="@string/title_activity_recipe_list" >
         </activity>
         <activity
@@ -90,6 +90,10 @@
         <activity
             android:name=".user.ProductInfoActivity"
             android:label="@string/title_activity_product_info" >
+        </activity>
+        <activity
+            android:name=".user.DetailedRecipeActivity"
+            android:label="@string/title_activity_detailed_recipe" >
         </activity>
     </application>
 

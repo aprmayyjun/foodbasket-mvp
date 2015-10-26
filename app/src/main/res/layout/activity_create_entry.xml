@@ -36,6 +36,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="Barcode"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:textStyle="bold" />
 
         <TextView
@@ -44,6 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/newEntryBarcode"
             android:text="Not available"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -53,6 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Product Name"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:textStyle="bold" />
         <!--android:textColor="#ffffff"-->
         <!--android:layout_below="@id/newEntry"-->
@@ -64,6 +73,8 @@
             android:layout_below="@id/newEntryName"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:inputType="text" />
         <!--android:textSize="30sp"-->
 
@@ -74,6 +85,9 @@
             android:layout_below="@id/newName"
             android:layout_marginTop="30dp"
             android:text="Category"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:textStyle="bold" />
         <!--android:textSize="30sp"-->
 
@@ -83,6 +97,8 @@
             android:id="@+id/newCategory"
             android:layout_below="@id/newEntryCategory"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -92,6 +108,9 @@
             android:layout_below="@id/newCategory"
             android:layout_marginTop="30dp"
             android:text="Capacity"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:textStyle="bold" />
 
         <EditText
@@ -101,6 +120,7 @@
             android:layout_below="@id/newEntryCapacity"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="5dp"
+            android:layout_marginLeft="@dimen/text_side_margin"
             android:inputType="numberDecimal" />
             <!--android:layout_centerHorizontal="true"-->
 
@@ -118,6 +138,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/newCapacity"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_marginTop="30dp"
             android:text="Expiry Date"
             android:textStyle="bold" />
@@ -127,6 +150,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/newExpiryDate"
             android:layout_below="@id/newEntryExpiryDate"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:inputType="date" />
@@ -146,6 +171,9 @@
             android:id="@+id/btn_newMedia"
             android:layout_below="@id/productImageView"
             android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_size_button"
+            android:layout_marginLeft="@dimen/button_side_margin"
+            android:layout_marginRight="@dimen/button_side_margin"
             android:layout_marginTop="@dimen/button_top_margin" />
         <!--android:background="#ffffff"-->
         <!--android:textColor="#53bbb4"-->
@@ -158,6 +186,9 @@
             android:id="@+id/btn_newSubmit"
             android:layout_below="@id/btn_newMedia"
             android:layout_centerHorizontal="true"
+            android:textSize="@dimen/text_size_button"
+            android:layout_marginLeft="@dimen/button_side_margin"
+            android:layout_marginRight="@dimen/button_side_margin"
             android:layout_marginTop="@dimen/button_top_margin" />
         <!--android:background="#ffffff"-->
         <!--android:textColor="#53bbb4"-->

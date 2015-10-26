@@ -62,5 +62,19 @@ public interface PHPConnectorInterface {
      */
     public JSONObject getProductFromDB (List<NameValuePair> params);
 
+    /**
+     * Used to retrieve entries from the database
+     * @param params
+     * @return the JSONObject response from the server
+     */
+    public JSONObject getRecipesListFromDB (List<NameValuePair> params);
+
+    /**
+     * Used to retrieve entries from the database
+     * @param params
+     * @return the JSONObject response from the server
+     */
+    public JSONObject getRecipeDetailFromDB (List<NameValuePair> params);
+
 
 }

@@ -1,76 +1,92 @@
 package teamrenaissance.foodbasket.user;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 import teamrenaissance.foodbasket.R;
-import teamrenaissance.foodbasket.admin.LoginRegisterActivity;
 import teamrenaissance.foodbasket.data.Entries;
 import teamrenaissance.foodbasket.data.Entry;
+import teamrenaissance.foodbasket.data.GetRecipeUtil;
+import teamrenaissance.foodbasket.data.Recipe;
+import teamrenaissance.foodbasket.data.Recipes;
 
-/**
- * For the Home User.
- * Boundary class to display as a list all entries created by this user.
- * An item in the list can be selected to view that entry in detail.
- *
- */
-public class InventoryListActivity extends AppCompatActivity {
+public class RecipesListActivity extends AppCompatActivity {
 
 
-    Entries entries = null;
+    Recipes recipesList = null;
     Bundle extras;
     Boolean newuser = false;
     String householdID = null;
+    String json_recipes = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inventory_list);
+        setContentView(R.layout.activity_recipe_list);
 
         extras = getIntent().getExtras();
         householdID = extras.getString("householdID");
-        if (extras.getString("newuser")!=null) {
-            newuser = true;
-        }
-        if (!newuser) {
-            initialise();
+
+        if (extras.getString("json_recipes")!=null) {
+            json_recipes = extras.getString("json_recipes");
+            prepareData();
             population();
+        } else {
+
+            if (extras.getString("newuser") != null) {
+                newuser = true;
+            } else {
+                initialise();
+            }
         }
     }
 
     private void initialise() {
 
+        // add the data collected to params variable to be sent to server
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("household_id", householdID));
+        new GetRecipeUtil.RetrieveRecipesList(params, RecipesListActivity.this, householdID).execute();
+
+    }
+
+    private void prepareData () {
+
         JSONObject jResp;
         try {
             //Log.d("JSON RESPONSE", extras.getString("json"));
-            jResp = new JSONObject(extras.getString("json"));
-            this.entries = new Entries (jResp);
+            jResp = new JSONObject(extras.getString("json_recipes"));
+            this.recipesList = new Recipes (jResp);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void population() {
+    private void population () {
 
-        ListView itemList = (ListView)findViewById(R.id.listView);
-        ArrayAdapter<Entry> adapter = new ArrayAdapter<Entry>(this,R.layout.list_item, entries.entriesArray);
+        ListView itemList = (ListView)findViewById(R.id.listView_recipes);
+        ArrayAdapter<Recipe> adapter = new ArrayAdapter<Recipe>(this,R.layout.list_item, recipesList.recipesArray);
 
+        /*
         adapter.sort(new Comparator<Entry>() {
 
             public int compare(Entry e1, Entry e2) {
@@ -79,9 +95,10 @@ public class InventoryListActivity extends AppCompatActivity {
                 Date date2 = e2.getExpiryDate();
 
                 //latest to earliest
-                return (date1.compareTo(date2));
+                return (date2.compareTo(date1));
             }
         });
+        */
 
         itemList.setAdapter(adapter);
 
@@ -90,17 +107,13 @@ public class InventoryListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> paret, View viewClicked, int position, long id) {
                 //TextView textview=(TextView) viewClicked;
-                Entry clickedEntry = InventoryListActivity.this.entries.entriesArray.get(position);
-                Intent toDetailed = new Intent(InventoryListActivity.this, DetailedEntryActivity.class);
-                toDetailed.putExtra("householdID", clickedEntry.getHouseholdID());
-                toDetailed.putExtra("pname", clickedEntry.getPName());
-                toDetailed.putExtra("category", clickedEntry.getCategory());
-                toDetailed.putExtra("capacity", (clickedEntry.getCapacityFloatStr()));
-                toDetailed.putExtra("capacityUnits", clickedEntry.getCapacityUnits());
-                toDetailed.putExtra("imageUrl", clickedEntry.getImageUrl());
-                toDetailed.putExtra("expiryDate", clickedEntry.getExpiryDateStr());
-                toDetailed.putExtra("id", clickedEntry.getInventoryID());
-                startActivity(toDetailed);
+                Recipe clickedEntry = RecipesListActivity.this.recipesList.recipesArray.get(position);
+
+                // add the data collected to params variable to be sent to server
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("recipe_id", clickedEntry.getRecipeID()));
+                new GetRecipeUtil.RetrieveRecipeDetail(params, RecipesListActivity.this, householdID).execute();
+
             }
         });
     }
@@ -114,11 +127,14 @@ public class InventoryListActivity extends AppCompatActivity {
         return true;
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -146,7 +162,7 @@ public class InventoryListActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
+
+    }*/
 
 }
-

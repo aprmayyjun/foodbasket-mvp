@@ -59,6 +59,7 @@ public class CreateEntryActivity extends AppCompatActivity {
     private String newCapacityUnits;
     private Date newExpiryDate;
     private String tmpDateStr;
+    private String barcode = null;
 
     private TextView newBarcodeTV;
     private EditText newnameET;
@@ -109,7 +110,7 @@ public class CreateEntryActivity extends AppCompatActivity {
 
         try {
             JSONObject jResp = new JSONObject(json);
-            String barcode = jResp.getString("barcode");
+            barcode = jResp.getString("barcode");
 
             if (newBarcodeTV != null)
                 newBarcodeTV.setText(barcode);
@@ -158,6 +159,19 @@ public class CreateEntryActivity extends AppCompatActivity {
                     params.add(new BasicNameValuePair("capacity", tmpCapacityStr));
                     params.add(new BasicNameValuePair("capacity_units", newCapacityUnits));
                     params.add(new BasicNameValuePair("expiry_date", tmpDateStr));
+
+                    Log.d("PARAMS @@@@", params.toString());
+                    Log.d("1. householdID @@@@", householdID);
+                    Log.d("2. newName @@@@", newName);
+                    Log.d("3. newCategory @@@@", newCategory);
+                    Log.d("4. tmpCapacityStr @@@@", tmpCapacityStr);
+                    Log.d("5. newCapacityU @@@@", newCapacityUnits);
+                    Log.d("6. tmpDateStr @@@@", tmpDateStr);
+
+                    if (barcode != null)
+                        params.add(new BasicNameValuePair("barcode", barcode));
+                    else
+                        params.add(new BasicNameValuePair("barcode", "0000000000000"));
 
                     if (bitmap == null)
                         new CreateEntryWithoutPicture(params, CreateEntryActivity.this, householdID).execute();

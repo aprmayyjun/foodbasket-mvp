@@ -4,19 +4,27 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.TabHost;
-import android.widget.TextView;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import teamrenaissance.foodbasket.R;
+import teamrenaissance.foodbasket.data.GetRecipeUtil;
 import teamrenaissance.foodbasket.user.InventoryListActivity;
-import teamrenaissance.foodbasket.user.RecipeListActivity;
-import teamrenaissance.foodbasket.user.ScannerActivity;
+import teamrenaissance.foodbasket.user.RecipesListActivity;
 import teamrenaissance.foodbasket.user.SettingsActivity;
 
 public class TabHostActivity extends TabActivity {
+
+    Resources res; // Resource object to get Drawables
+    TabHost tabHost; // The activity TabHost
+    TabHost.TabSpec spec; // Reusable TabSpec for each tab
+    Intent intent; // Reusable Intent for each tab
+
 
     /** Called when the activity is first created. */
     @Override
@@ -24,10 +32,19 @@ public class TabHostActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_host);
 
-        Resources res = getResources(); // Resource object to get Drawables
-        TabHost tabHost = getTabHost(); // The activity TabHost
-        TabHost.TabSpec spec; // Reusable TabSpec for each tab
-        Intent intent; // Reusable Intent for each tab
+        res = getResources();
+        tabHost = getTabHost();
+
+        setUpInventoryTab();
+        setUpCookbookTab();
+        setUpSettingsTab();
+
+        //set tab which one you want open first time 0 or 1 or 2
+        tabHost.setCurrentTab(0);
+    }
+
+
+    private void setUpInventoryTab () {
 
         // Create an Intent to launch an Activity for the tab (to be reused)
         intent = new Intent().setClass(this, InventoryListActivity.class);
@@ -38,18 +55,23 @@ public class TabHostActivity extends TabActivity {
                 .setIndicator("INVENTORY")
                 .setContent(intent);
         tabHost.addTab(spec);
+    }
 
 
-        // Do the same for the other tabs
+    private void setUpCookbookTab () {
 
-        intent = new Intent().setClass(this, RecipeListActivity.class);
+        intent = new Intent().setClass(this, RecipesListActivity.class);
         // Pass arguments from previous activity to next activity
         intent.putExtras(getIntent().getExtras());
+
         spec = tabHost.newTabSpec("cookbook")
                 .setIndicator("COOKBOOK")
                 .setContent(intent);
         tabHost.addTab(spec);
+    }
 
+
+    private  void setUpSettingsTab () {
 
         intent = new Intent().setClass(this, SettingsActivity.class);
         // Pass arguments from previous activity to next activity
@@ -59,8 +81,6 @@ public class TabHostActivity extends TabActivity {
                 .setContent(intent);
         tabHost.addTab(spec);
 
-        //set tab which one you want open first time 0 or 1 or 2
-        tabHost.setCurrentTab(0);
     }
 
 }
