@@ -6,10 +6,10 @@
     <item android:id="@+id/inventory_option_1" android:title="@string/inventory_option_1_string"
         android:orderInCategory="100" app:showAsAction="never" />
 
-    <item android:id="@+id/inventory_option_2" android:title="@string/inventory_option_2_string"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <!--<item android:id="@+id/inventory_option_2" android:title="@string/inventory_option_2_string"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
 
-    <item android:id="@+id/inventory_option_3" android:title="@string/inventory_option_3_string"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <!--<item android:id="@+id/inventory_option_3" android:title="@string/inventory_option_3_string"-->
+        <!--android:orderInCategory="100" app:showAsAction="never" />-->
 
 </menu>

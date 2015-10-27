@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,6 +49,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
     private String yieldStr = null;
     private String totalTimeStr = null;
     private float rating = 0;
+    private String[] ingredientArray = null;
 
     private TextView rnameView;
     private TextView ingredientsView;
@@ -97,6 +99,7 @@ public class DetailedRecipeActivity extends AppCompatActivity {
 
         nameStr = this.recipe.getNameStr();
         ingredientLines = this.recipe.getIngredientLines();
+        ingredientArray = this.recipe.getIngredientsArray();
         rating = this.recipe.getRating();
         totalTimeStr = this.recipe.getTotalTimeStr();
         yieldStr = this.recipe.getYieldStr();
@@ -104,14 +107,25 @@ public class DetailedRecipeActivity extends AppCompatActivity {
         imageUrlLarge = this.recipe.getImageUrlLarge();
 
         rnameView = (TextView) findViewById(R.id.viewRName);
-        if (nameStr != null)
+        if (nameStr != null && !nameStr.equals("null"))
             rnameView.setText(nameStr);
         else
             rnameView.setText("Not available");
 
         ingredientsView = (TextView) findViewById(R.id.viewRIngredients);
-        if (ingredientLines != null)
+        if (ingredientArray != null) {
+            String temp = "";
+
+            for (int i=0; i<ingredientArray.length; i++) {
+                temp = temp+ingredientArray[i];
+                if (i<(ingredientArray.length-1))
+                    temp = temp+"\n";
+            }
+            ingredientsView.setText(temp);
+        }
+        else if (ingredientLines != null && !ingredientLines.equals("null")) {
             ingredientsView.setText(ingredientLines);
+        }
         else
             ingredientsView.setText("Not available");
 
@@ -122,13 +136,13 @@ public class DetailedRecipeActivity extends AppCompatActivity {
             ratingView.setText("Not available");
 
         recipeTimeView = (TextView) findViewById(R.id.viewRTime);
-        if (totalTimeStr != null)
+        if (totalTimeStr != null && !totalTimeStr.equals("null"))
             recipeTimeView.setText(totalTimeStr);
         else
             recipeTimeView.setText("Not available");
 
         yieldView = (TextView) findViewById(R.id.viewRYield);
-        if (yieldStr != null)
+        if (yieldStr != null && !yieldStr.equals("null"))
             yieldView.setText(yieldStr);
         else
             yieldView.setText("Not available");

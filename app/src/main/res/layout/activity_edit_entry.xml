@@ -34,6 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:text="Product Name"
             android:textStyle="bold" />
         <!--android:textSize="30sp"-->
@@ -45,6 +48,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editEntryName"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -53,6 +59,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/editName"
             android:layout_marginTop="30dp"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:text="Category"
             android:textStyle="bold" />
 
@@ -61,6 +70,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/editEntryCategory"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:layout_marginTop="5dp" />
 
         <TextView
@@ -68,6 +80,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/editCategory"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:layout_marginTop="30dp"
             android:text="Capacity"
             android:textStyle="bold" />
@@ -77,6 +92,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editCapacity"
             android:layout_below="@id/editEntryCapacity"
+            android:layout_marginLeft="@dimen/field_side_margin"
             android:layout_alignParentLeft="true"
             android:layout_marginTop="5dp"
             android:inputType="numberDecimal" />
@@ -96,8 +112,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/editCapacityUnits"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:layout_marginTop="30dp"
-            android:text="Expiry Date"
+            android:text="Expiry Date (yyyymmdd)"
             android:textStyle="bold" />
 
         <EditText
@@ -105,6 +124,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/editExpiryDate"
             android:layout_below="@id/editEntryExpiryDate"
+            android:layout_marginLeft="@dimen/field_side_margin"
+            android:layout_marginRight="@dimen/field_side_margin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
@@ -116,6 +137,9 @@
             android:text="Submit"
             android:id="@+id/bth_editSubmit"
             android:layout_below="@id/editExpiryDate"
+            android:textSize="@dimen/text_size_button"
+            android:layout_marginLeft="@dimen/button_side_margin"
+            android:layout_marginRight="@dimen/button_side_margin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/button_top_margin" />
         <!--android:background="#ffffff"-->

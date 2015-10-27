@@ -118,7 +118,7 @@ public class RecipesListActivity extends AppCompatActivity {
         });
     }
 
-
+    /*
     // To set up the action bar in the screen
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,6 +126,7 @@ public class RecipesListActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_inventory_list, menu);
         return true;
     }
+    */
 
     /*
     @Override

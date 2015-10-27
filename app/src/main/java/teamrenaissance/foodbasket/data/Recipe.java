@@ -21,7 +21,7 @@ public class Recipe {
     String recipeID, ingredientsStr, imageUrlSmall, recipeName;
     int timeinS;
     float rating;
-    String[] ingredientArray;
+    String[] ingredientArray = null;
 
     String sourceUrl, ingredientLines, imageUrlLarge, nameStr, yieldStr, totalTimeStr;
 
@@ -44,6 +44,8 @@ public class Recipe {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        this.ingredientArray =  generateIngredientArray(this.ingredientLines);
     }
 
 
@@ -63,8 +65,27 @@ public class Recipe {
 
     private String[] generateIngredientArray (String ingredientsStr) {
         Log.d ("@@@ ingredientsStr", ingredientsStr);
-        String[] myStringArray = {"a","b","c"};
-        return  myStringArray;
+
+        String[] myStringArray = null;
+        JSONArray jArray;
+        int i;
+
+        try {
+            jArray = new JSONArray(ingredientsStr);
+
+            if (jArray != null) {
+                myStringArray = new String[jArray.length()];
+
+                for (i = 0; i < jArray.length(); i++) {
+                    myStringArray[i] = jArray.get(i).toString();
+                    Log.d("@@@ FOR LOOP", i + ", " + myStringArray[i]);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return myStringArray;
     }
 
     /**

@@ -128,7 +128,7 @@ public class InventoryListActivity extends AppCompatActivity {
             startActivity(toScannerActivity);
             return true;
         }
-
+        /*
         else if (id == R.id.inventory_option_2) {
             Intent toHCreateEntry = new Intent(InventoryListActivity.this, CreateEntryActivity.class);
             Log.d("cf", "householdID in put extra is " + householdID);
@@ -144,6 +144,7 @@ public class InventoryListActivity extends AppCompatActivity {
             startActivity(toHCreateEntry);
             return true;
         }
+        */
 
         return super.onOptionsItemSelected(item);
     }

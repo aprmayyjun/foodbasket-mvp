@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:gravity="center_vertical"
     android:paddingLeft="20dip"
+    android:textSize="@dimen/text_size_field"
     android:minHeight="?android:attr/listPreferredItemHeight" />
     <!--android:textSize="30sp"-->
     <!--android:textColor="#ffffff"-->

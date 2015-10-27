@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -19,19 +20,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:id="@+id/imageDiv" >
+            android:id="@+id/imageDiv"
+            android:orientation="vertical" >
 
             <ProgressBar
                 android:id="@+id/progressBar1"
                 style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="30dp"
                 android:layout_centerHorizontal="true" />
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/entryImage"
                 android:layout_centerHorizontal="true" />
@@ -45,6 +47,9 @@
             android:layout_marginTop="40dp"
             android:layout_below="@+id/imageDiv"
             android:text="Product Name"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:textStyle="bold" />
 
         <TextView
@@ -52,6 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/viewEntryName"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_marginTop="5dp" />
         <!--android:textSize="30sp"-->
         <!--android:textColor="#ffffff"-->
@@ -60,6 +68,9 @@
             android:id="@+id/viewEntryCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_below="@+id/viewName"
             android:layout_marginTop="30dp"
             android:text="Category"
@@ -69,6 +80,9 @@
             android:id="@+id/viewCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_below="@+id/viewEntryCategory"
             android:layout_marginTop="5dp" />
 
@@ -76,6 +90,9 @@
             android:id="@+id/viewEntryCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_below="@+id/viewCategory"
             android:layout_marginTop="30dp"
             android:text="Capacity"
@@ -85,6 +102,9 @@
             android:id="@+id/viewCapacity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_below="@+id/viewEntryCapacity"
             android:layout_marginTop="5dp" />
 
@@ -92,6 +112,9 @@
             android:id="@+id/viewEntryExpiryDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_below="@+id/viewCapacity"
             android:layout_marginTop="30dp"
             android:text="Expiry Date"
@@ -101,6 +124,9 @@
             android:id="@+id/viewExpiryDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_below="@+id/viewEntryExpiryDate"
             android:layout_marginTop="5dp" />
 
@@ -109,6 +135,9 @@
             android:layout_height="wrap_content"
             android:text="Edit"
             android:id="@+id/btn_Edit"
+            android:textSize="@dimen/text_size_button"
+            android:layout_marginLeft="@dimen/button_side_margin"
+            android:layout_marginRight="@dimen/button_side_margin"
             android:layout_below="@+id/viewExpiryDate"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="60dp" />
@@ -122,6 +151,9 @@
             android:text="Delete"
             android:id="@+id/btn_Delete"
             android:layout_below="@+id/btn_Edit"
+            android:textSize="@dimen/text_size_button"
+            android:layout_marginLeft="@dimen/button_side_margin"
+            android:layout_marginRight="@dimen/button_side_margin"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/button_top_margin" />
 

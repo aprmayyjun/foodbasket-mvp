@@ -142,7 +142,7 @@
             android:layout_marginLeft="@dimen/text_side_margin"
             android:layout_marginRight="@dimen/text_side_margin"
             android:layout_marginTop="30dp"
-            android:text="Expiry Date"
+            android:text="Expiry Date (yyyymmdd)"
             android:textStyle="bold" />
 
         <EditText
