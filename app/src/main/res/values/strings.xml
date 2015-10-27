@@ -33,6 +33,7 @@
     <string name="title_activity_product_info">Review Product Information</string>
     <string name="title_activity_detailed_recipe">Recipe Information</string>
     <string name="title_activity_tab_host">TabHostActivity</string>
+    <string name="title_activity_recipe_main">Household Cookbook</string>
 
     <string name="inventory_option_1_string">Add Item</string>
     <string name="inventory_option_2_string">Order by Expiry Date</string>

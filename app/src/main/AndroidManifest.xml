@@ -95,6 +95,10 @@
             android:name=".user.DetailedRecipeActivity"
             android:label="@string/title_activity_detailed_recipe" >
         </activity>
+        <activity
+            android:name=".user.RecipesMainActivity"
+            android:label="@string/title_activity_recipe_main" >
+        </activity>
     </application>
 
 </manifest>

@@ -46,18 +46,24 @@ public class RecipesListActivity extends AppCompatActivity {
         extras = getIntent().getExtras();
         householdID = extras.getString("householdID");
 
+
         if (extras.getString("json_recipes")!=null) {
             json_recipes = extras.getString("json_recipes");
             prepareData();
             population();
         } else {
-
             if (extras.getString("newuser") != null) {
                 newuser = true;
             } else {
-                initialise();
+                //initialise();
             }
         }
+
+
+
+
+
+
     }
 
     private void initialise() {
