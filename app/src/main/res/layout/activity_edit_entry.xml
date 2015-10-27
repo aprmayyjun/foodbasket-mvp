@@ -88,7 +88,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/editCapacity"
             android:layout_below="@id/editEntryCapacity"
@@ -99,7 +99,7 @@
         <!--android:layout_centerHorizontal="true"-->
 
         <EditText
-            android:layout_width="70dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/editCapacityUnits"
             android:layout_below="@id/editEntryCapacity"
