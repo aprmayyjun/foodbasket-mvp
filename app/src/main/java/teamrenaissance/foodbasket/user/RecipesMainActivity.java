@@ -30,16 +30,42 @@ public class RecipesMainActivity extends AppCompatActivity {
     }
 
     private void setRecipeButton_1() {
-        Button btn = (Button)findViewById(R.id.btn_Recipes_1);
+        Button btn = null;
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-//                Intent intent = new Intent().setClass(RecipesMainActivity.this, RecipesListActivity.class);
-//                intent.putExtras(getIntent().getExtras());
-
-                initialise();
+        for (int i=1; i<=5; i++) {
+            switch (i) {
+                case 1:
+                    btn = (Button) findViewById(R.id.btn_Recipes_1);
+                    break;
+                case 2:
+                    btn = (Button) findViewById(R.id.btn_Recipes_2);
+                    break;
+                case 3:
+                    btn = (Button) findViewById(R.id.btn_Recipes_3);
+                    break;
+                case 4:
+                    btn = (Button) findViewById(R.id.btn_Recipes_4);
+                    break;
+                case 5:
+                    btn = (Button) findViewById(R.id.btn_Recipes_5);
+                    break;
+                default:
+                    btn = (Button) findViewById(R.id.btn_Recipes_1);
+                    break;
             }
-        });
+
+
+            if (btn!=null) {
+                btn.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        //                Intent intent = new Intent().setClass(RecipesMainActivity.this, RecipesListActivity.class);
+                        //                intent.putExtras(getIntent().getExtras());
+
+                        initialise();
+                    }
+                });
+            }
+        }
     }
 
     private void initialise() {

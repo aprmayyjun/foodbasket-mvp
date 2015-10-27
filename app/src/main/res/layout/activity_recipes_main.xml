@@ -34,11 +34,63 @@ tools:context="teamrenaissance.foodbasket.user.RecipesMainActivity" >
         android:layout_height="wrap_content"
         android:layout_below="@id/recipeMainText"
         android:textSize="@dimen/text_size_button"
-        android:layout_marginLeft="@dimen/button_side_margin"
-        android:layout_marginRight="@dimen/button_side_margin"
+        android:layout_marginLeft="@dimen/button_side_margin_small"
+        android:layout_marginRight="@dimen/button_side_margin_small"
+        android:layout_marginTop="40dp"
+        android:text="Ingredients: Expiry Date"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_Recipes_2"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_Recipes_1"
+        android:textSize="@dimen/text_size_button"
+        android:layout_marginLeft="@dimen/button_side_margin_small"
+        android:layout_marginRight="@dimen/button_side_margin_small"
+        android:layout_marginTop="@dimen/button_top_margin"
+        android:text="Ingredients: Completeness"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/btn_Recipes_3"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_Recipes_2"
+        android:textSize="@dimen/text_size_button"
+        android:layout_marginLeft="@dimen/button_side_margin_small"
+        android:layout_marginRight="@dimen/button_side_margin_small"
         android:layout_marginTop="30dp"
-        android:text="Ingredient's Expiry Date"
-        android:layout_alignParentBottom="true"
+        android:text="Recipes: Cuisine"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_Recipes_4"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_Recipes_3"
+        android:textSize="@dimen/text_size_button"
+        android:layout_marginLeft="@dimen/button_side_margin_small"
+        android:layout_marginRight="@dimen/button_side_margin_small"
+        android:layout_marginTop="@dimen/button_top_margin"
+        android:text="Recipes: Preparation Time"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_Recipes_5"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_Recipes_4"
+        android:textSize="@dimen/text_size_button"
+        android:layout_marginLeft="@dimen/button_side_margin_small"
+        android:layout_marginRight="@dimen/button_side_margin_small"
+        android:layout_marginTop="@dimen/button_top_margin"
+        android:text="Recipes: User Rating"
         android:textStyle="bold" />
 
 </RelativeLayout>

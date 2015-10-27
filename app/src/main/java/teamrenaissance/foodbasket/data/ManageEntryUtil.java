@@ -30,6 +30,86 @@ import teamrenaissance.foodbasket.data.GetEntryUtil.RetrieveEntries;
  */
 public class ManageEntryUtil {
 
+    // Background Async Task to create an entry (with product identified) to be stored in DB
+    public static class CreateEntryWithProduct extends AsyncTask<Void, Void, Void> {
+
+        List<NameValuePair> params;
+        Context context;
+        ProgressDialog pDialog;
+        JSONObject jResp = null;
+        int isSuccess = 0;
+        String householdID;
+
+        public CreateEntryWithProduct (List<NameValuePair> p, Context c, String householdID) {
+            super();
+            this.params = p;
+            this.context = c;
+            this.householdID = householdID;
+        }
+
+        // Before starting background thread Show Progress Dialog
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(this.context);
+            pDialog.setMessage("Creating entry. Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        // Attempt to create entry record in the DB
+        protected Void doInBackground(Void... arg) {
+
+            // Send entry details to PHP server and receive response
+            PHPConnectorInterface phpC = new PHPConnector ();
+            jResp = phpC.addEntryWithProductToDB(this.params);
+
+            if (jResp != null) {
+                // Check success tag
+                try {
+                    // shld be: success=1, message="success"
+                    isSuccess = jResp.getInt("success");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            return null;
+        }
+
+        // After completing background task Dismiss the progress dialog
+        protected void onPostExecute(Void result) {
+            // Dismiss the dialog once verification done
+            pDialog.dismiss();
+
+            // Change activity based on results
+            if (isSuccess==1) {
+                int option = 0;
+
+                // add the data collected to params variable to be sent to server
+                List<NameValuePair> params = new ArrayList<NameValuePair>();
+                params.add(new BasicNameValuePair("household_id", householdID));
+
+                new RetrieveEntries(params, this.context, householdID, option).execute();
+
+                // show registration success message in Toast if success
+                String text = "Entry successfully created.";
+                Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
+
+            } else {
+                Intent toCreateEntry = new Intent (this.context, CreateEntryActivity.class);
+                toCreateEntry.putExtra("householdID", householdID);
+                this.context.startActivity(toCreateEntry);
+
+                // show registration failure message in Toast if fail
+                String text = "Failed to create entry. Please try again...";
+                Toast.makeText(this.context, text, Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
     // Background Async Task to create an entry (without picture) to be stored in DB
     public static class CreateEntryWithoutPicture extends AsyncTask<Void, Void, Void> {
 

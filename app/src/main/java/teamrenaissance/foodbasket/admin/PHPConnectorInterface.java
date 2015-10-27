@@ -40,6 +40,13 @@ public interface PHPConnectorInterface {
      */
     public JSONObject addEntryToDB (List<NameValuePair> params);
 
+    /**
+     * Used when a user creates a new journal entry
+     * @param params
+     * @return the JSONObject response from the server
+     */
+    public JSONObject addEntryWithProductToDB (List<NameValuePair> params);
+
 
     /**
      * Used when a user edits an existing journal entry

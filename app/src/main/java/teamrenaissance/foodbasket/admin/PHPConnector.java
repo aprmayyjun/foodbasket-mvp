@@ -18,6 +18,7 @@ public class PHPConnector implements PHPConnectorInterface{
     //static String ipAddr = "http://192.168.0.103:8888/";
     static String ipAddr = "http://10.27.153.118:8888/";
 
+
     // localhost IP (for emulator)
     //static String ipAddr = "http://10.0.2.2:8888/";
 
@@ -36,6 +37,12 @@ public class PHPConnector implements PHPConnectorInterface{
     public JSONObject addEntryToDB (List<NameValuePair> params) {
         JSONConnector jParser = new JSONConnector();
         JSONObject json = jParser.makeHttpRequest(ipAddr+"create_entry.php", "POST", params);
+        return json;
+    }
+
+    public JSONObject addEntryWithProductToDB (List<NameValuePair> params) {
+        JSONConnector jParser = new JSONConnector();
+        JSONObject json = jParser.makeHttpRequest(ipAddr+"create_entry_with_product.php", "POST", params);
         return json;
     }
 

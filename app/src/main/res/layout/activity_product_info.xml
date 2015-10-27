@@ -107,17 +107,40 @@
             android:layout_marginRight="@dimen/text_side_margin"
             android:layout_marginTop="5dp" />
 
-        <Button
+        <TextView
+            android:id="@+id/productInfoExpiryDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/productCapacity"
+            android:textSize="@dimen/text_size_field"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
+            android:layout_marginTop="30dp"
+            android:text="Expiry Date (yyyymmdd)"
+            android:textStyle="bold" />
+
+        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit"
-            android:id="@+id/btn_EditProduct"
-            android:layout_below="@+id/productCapacity"
+            android:id="@+id/productExpiryDate"
+            android:layout_below="@id/productInfoExpiryDate"
+            android:layout_marginLeft="@dimen/text_side_margin"
+            android:layout_marginRight="@dimen/text_side_margin"
             android:layout_centerHorizontal="true"
-            android:textSize="@dimen/text_size_button"
-            android:layout_marginLeft="@dimen/button_side_margin"
-            android:layout_marginRight="@dimen/button_side_margin"
-            android:layout_marginTop="60dp" />
+            android:layout_marginTop="5dp"
+            android:inputType="date" />
+
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Edit"-->
+            <!--android:id="@+id/btn_EditProduct"-->
+            <!--android:layout_below="@+id/productCapacity"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:textSize="@dimen/text_size_button"-->
+            <!--android:layout_marginLeft="@dimen/button_side_margin"-->
+            <!--android:layout_marginRight="@dimen/button_side_margin"-->
+            <!--android:layout_marginTop="60dp" />-->
         <!--android:background="#ffffff"-->
         <!--android:textColor="#53bbb4"-->
         <!--android:textSize="30sp"-->
@@ -127,12 +150,12 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/btn_SubmitProduct"
-            android:layout_below="@+id/btn_EditProduct"
+            android:layout_below="@+id/productExpiryDate"
             android:textSize="@dimen/text_size_button"
             android:layout_marginLeft="@dimen/button_side_margin"
             android:layout_marginRight="@dimen/button_side_margin"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/button_top_margin" />
+            android:layout_marginTop="60dp" />
 
     </RelativeLayout>
 </ScrollView>

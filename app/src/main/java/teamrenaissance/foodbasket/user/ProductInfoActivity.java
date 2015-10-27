@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -43,6 +44,8 @@ public class ProductInfoActivity extends AppCompatActivity {
     private TextView pnameView;
     private TextView categoryView;
     private TextView capacityView;
+    private EditText expiryET;
+
     private ImageView imgView;
     private ProgressBar spinner;
     private ImageUtil.DownloadImageTask ref;
@@ -88,6 +91,8 @@ public class ProductInfoActivity extends AppCompatActivity {
         categoryView.setText(product.getCategory());
         capacityView = (TextView) findViewById(R.id.productCapacity);
         capacityView.setText(product.getCapacity());
+        expiryET = (EditText) findViewById(R.id.productExpiryDate);
+
         imgView = (ImageView) findViewById(R.id.productImage);
         spinner = (ProgressBar) findViewById(R.id.progressBar2);
         Log.d("IMAGE URL!!!", product.getImageUrl());
@@ -125,6 +130,8 @@ public class ProductInfoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                dateStr = expiryET.getText().toString();
+
                 // add the data collected to params variable to be sent to server
                 // array('household_id', 'product_id', 'capacity', 'capacity_units', 'expiry_date');
                 List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -134,7 +141,7 @@ public class ProductInfoActivity extends AppCompatActivity {
                 params.add(new BasicNameValuePair("capacity_units", product.getCapacityUnits()));
                 params.add(new BasicNameValuePair("expiry_date", dateStr));
 
-                new ManageEntryUtil.CreateEntryWithoutPicture(params, ProductInfoActivity.this, householdID).execute();
+                new ManageEntryUtil.CreateEntryWithProduct (params, ProductInfoActivity.this, householdID).execute();
 
 
             }
